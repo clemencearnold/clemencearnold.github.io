@@ -1,0 +1,522 @@
+/* Clémence Arnold — feuille de style unique */
+
+:root {
+  --fond: #ffffff;
+  --texte: #000;
+  --discret: #8b8a85;
+  --filet: #dedcd6;
+  --colonne: 280px;
+  --marge: 40px;
+  --respiration: 20px; /* marge autour des images */
+  --fondu: 0.6s;
+  --police: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --police-nom: "Yanone Kaffeesatz", "Helvetica Neue", Arial, sans-serif; /* la typo du site actuel */
+  --gris-nom: #000; /* nom en noir sur toutes les pages */
+  --haut: 40px; /* marge haute, alignée sur le nom (page Contact) */
+  /* Cadre commun à l'image d'accueil et aux diaporamas : mêmes marges, même taille d'image */
+  --cadre-haut: 41px; /* = haut des lettres du nom (mesuré) : les images s'alignent dessus */
+  /* Le menu se cale sur la vidéo centrée verticalement, un peu plus bas.
+     Borné pour rester raisonnable sur les écrans très larges ou très hauts. */
+  --video-haut: clamp(120px, calc((100vh - (100vw - var(--colonne) - var(--marge)) * 9 / 16) / 2), 260px); /* marge d'une vidéo centrée verticalement */
+  --ligne1: calc(var(--video-haut) + 28px); /* haut des lettres de « PEINTURES » : un peu sous le haut de la vidéo */
+  --texte-haut: calc(var(--ligne1) - 5px); /* boîte du texte, pour que ses lettres commencent à --ligne1 */
+  --cadre-droite: var(--marge);
+  --cadre-bas: var(--cadre-haut); /* même marge en bas qu'en haut */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+html { background: var(--fond); }
+
+body {
+  background: var(--fond);
+  color: var(--texte);
+  font: 13px/1.55 var(--police);
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover, a[aria-current] { color: var(--discret); }
+em { font-style: italic; }
+ul { list-style: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; letter-spacing: inherit; }
+button:hover { color: var(--discret); }
+:focus-visible { outline: 1px solid var(--texte); outline-offset: 3px; }
+.discret { color: var(--discret); }
+/* Invisible à l'écran, lu par les lecteurs d'écran */
+.visuellement-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- Colonne de gauche ---------- */
+
+.colonne {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--colonne);
+  padding: var(--marge) 20px var(--marge) 24px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.nom {
+  font-family: var(--police-nom);
+  font-weight: 700;
+  font-size: 37px;
+  line-height: 1;
+  letter-spacing: 2.5px;
+  color: var(--gris-nom);
+  display: block;
+  white-space: nowrap;
+}
+.nom:hover { color: var(--gris-nom); }
+
+/* En haut à droite : FR / EN */
+.coin {
+  position: fixed;
+  top: 14px;
+  right: var(--respiration);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11.5px;
+  color: var(--discret);
+  z-index: 20;
+}
+.langues a { color: var(--discret); }
+.langues a:hover, .langues [aria-current] { color: var(--texte); }
+
+.menu { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+.menu-rubriques {
+  margin-top: calc(var(--ligne1) - 82px); /* 82 px = distance du haut de la colonne au haut des lettres du menu, sans marge */
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 13px;
+}
+.menu-rubriques.menu-infos { margin-top: min(72px, 8vh); font-size: 10.5px; } /* 2e groupe : les informations */
+.menu-secondaire { margin-top: min(48px, 5.3vh); font-size: 12px; } /* écarts réduits sur les écrans bas */
+.reseaux { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; } /* pictogrammes l'un au-dessus de l'autre */
+.icone { display: block; width: 17px; height: 17px; }
+.icone svg { display: block; width: 100%; height: 100%; }
+.menu li { margin-bottom: 4px; }
+
+.menu-bouton { display: none; }
+
+.actualites {
+  margin-top: auto;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.actualites p { margin-bottom: 14px; }
+.actualites .statut { display: block; color: var(--discret); }
+
+/* Légende + navigation, en bas de la colonne */
+/* Texte de l'exposition, dans la colonne */
+.expo-info {
+  margin-top: 36px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  overflow-y: auto;
+  min-height: 0;
+  scrollbar-width: none;
+}
+.expo-info h1 { font-size: 13px; font-weight: normal; }
+.expo-info p { margin-top: 8px; }
+.expo-info .discret { margin-top: 2px; }
+.expo-mobile { display: none; }
+.expo-info.deborde { -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent); mask-image: linear-gradient(to bottom, #000 80%, transparent); }
+
+.cartel {
+  flex-shrink: 0;
+  margin-top: auto;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.cartel-texte { color: var(--discret); min-height: 1.5em; }
+.cartel-texte em { color: var(--texte); }
+.cartel-serie { display: block; margin-top: 8px; }
+.credit { font-size: 10.5px; }
+.cartel-nav {
+  margin-top: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.cartel-nav button { font-size: 16px; line-height: 1; padding: 2px 0; }
+.cartel-nav button:disabled { color: var(--filet); cursor: default; }
+.compteur { margin-left: auto; color: var(--discret); }
+.cartel-index { margin-top: 14px; }
+.bouton-index {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--texte);
+}
+.icone-grille {
+  width: 11px;
+  height: 11px;
+  background:
+    linear-gradient(currentColor, currentColor) 0 0 / 5px 5px no-repeat,
+    linear-gradient(currentColor, currentColor) 100% 0 / 5px 5px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 100% / 5px 5px no-repeat,
+    linear-gradient(currentColor, currentColor) 100% 100% / 5px 5px no-repeat;
+}
+
+/* ---------- Zone principale ---------- */
+
+main {
+  margin-left: var(--colonne);
+  min-height: 100vh;
+}
+
+/* ---------- Accueil : photo en pleine page, menu en noir par-dessus ---------- */
+
+[data-page="accueil"] {
+  --texte: #000;
+  --discret: #000;
+  --gris-nom: #000; /* noir profond pour que le nom se détache sur la photo */
+}
+[data-page="accueil"] a:hover { color: rgba(0, 0, 0, 0.55); }
+[data-page="accueil"] main { position: fixed; inset: 0; margin: 0; height: 100vh; }
+.accueil-plein { position: absolute; inset: 0; overflow: hidden; }
+.accueil-plein img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  opacity: 0;
+  transition: opacity var(--fondu) ease;
+}
+.accueil-plein img.visible { opacity: 1; animation: apparition 1.4s ease both; }
+/* Crédit photo et compteur, en bas à droite */
+.accueil-pied {
+  position: fixed;
+  right: var(--respiration);
+  bottom: 14px;
+  display: flex;
+  gap: 18px;
+  font-size: 11.5px;
+  color: #000;
+  z-index: 5;
+}
+.accueil-compteur { font-variant-numeric: tabular-nums; }
+/* Actualités posées sur la photo, en blanc, dans la zone sombre à droite (position calculée en JS) */
+[data-page="accueil"] .actualites {
+  position: fixed;
+  right: var(--respiration); /* même marge droite que FR / EN et le crédit */
+  text-align: right;
+  margin: 0;
+  max-width: 240px;
+  color: #fff;
+  z-index: 5;
+}
+[data-page="accueil"] .actualites p:last-child { margin-bottom: 0; }
+/* Variante à gauche : au-dessus du sol, en plus petit, dans une couleur de la fresque */
+[data-page="accueil"] .actualites[data-cote="gauche"] {
+  right: auto;
+  left: 24px; /* = marge gauche de la colonne */
+  text-align: left;
+  font-size: 10.5px;
+  color: var(--actu-couleur, #db8447); /* couleur prise dans la fresque, propre à chaque version de la photo (data.js) */
+  line-height: 1.35;
+}
+[data-page="accueil"] .actualites[data-cote="gauche"] a,
+[data-page="accueil"] .actualites[data-cote="gauche"] .statut { color: var(--actu-couleur, #db8447); }
+[data-page="accueil"] .actualites[data-cote="gauche"] a:hover { color: #fff; }
+[data-page="accueil"] .actualites a,
+[data-page="accueil"] .actualites .statut { color: #fff; }
+[data-page="accueil"] .actualites a:hover { color: rgba(255, 255, 255, 0.7); }
+.accueil-plein.vers-droite { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M8 16h16m-6-6 6 6-6 6' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M8 16h16m-6-6 6 6-6 6' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") 16 16, e-resize; }
+.accueil-plein.vers-gauche { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M24 16H8m6-6-6 6 6 6' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M24 16H8m6-6-6 6 6 6' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E") 16 16, w-resize; }
+
+@keyframes apparition { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- Diaporama : une image à la fois, en fondu ---------- */
+
+.scene { position: relative; height: 100vh; overflow: hidden; }
+
+.diapo {
+  position: absolute;
+  inset: var(--cadre-haut) var(--cadre-droite) var(--cadre-bas) 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--fondu) ease, visibility 0s linear var(--fondu);
+}
+.diapo.active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--fondu) ease, visibility 0s;
+}
+.diapo > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 0;
+}
+/* Œuvres très larges (triptyque) : centrées verticalement dans la page au lieu d'être calées en haut */
+.diapo.diapo-centree > img { object-position: 50% 50%; }
+
+/* Curseur : une petite flèche dans le sens du défilement */
+.scene.vers-droite img {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M8 16h16m-6-6 6 6-6 6' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M8 16h16m-6-6 6 6-6 6' fill='none' stroke='%231c1c1a' stroke-width='1.5'/%3E%3C/svg%3E") 16 16, e-resize;
+}
+.scene.vers-gauche img {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath d='M24 16H8m6-6-6 6 6 6' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M24 16H8m6-6-6 6 6 6' fill='none' stroke='%231c1c1a' stroke-width='1.5'/%3E%3C/svg%3E") 16 16, w-resize;
+}
+.legende-mobile { display: none; }
+
+/* Diptyque / triptyque en plusieurs fichiers : panneaux côte à côte */
+/* Vidéo : même cadre que les images, au format 16:9 */
+.video {
+  display: block;
+  aspect-ratio: 16 / 9;
+  width: min(100%, calc((100vh - var(--cadre-haut) - var(--cadre-bas)) * 16 / 9));
+  background: #000;
+}
+/* Les vidéos commencent au niveau de « PEINTURES » (1re ligne du menu), pas du nom */
+.diapo.diapo-video { top: var(--video-haut); bottom: var(--video-haut); } /* vidéo centrée verticalement */
+.diapo-video .video { width: min(100%, calc((100vh - 2 * var(--video-haut)) * 16 / 9)); }
+
+.panneaux {
+  display: flex;
+  gap: 0.5%;
+  aspect-ratio: var(--r);
+  width: min(100%, calc((100vh - var(--cadre-haut) - var(--cadre-bas)) * var(--r)));
+}
+.panneaux img {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Diapos de texte (introduction et fin d'une exposition) */
+.diapo-texte { justify-content: flex-start; align-items: center; }
+.texte-diapo { max-width: 32em; }
+.texte-diapo h1 { font-size: 13px; font-weight: normal; }
+.texte-diapo p { margin-top: 14px; }
+.texte-diapo .discret { margin-top: 2px; }
+
+/* ---------- Index des peintures ---------- */
+
+.index {
+  position: fixed;
+  inset: 0 0 0 var(--colonne);
+  overflow-y: auto;
+  background: var(--fond);
+  padding: var(--marge) var(--marge) 80px 0;
+  z-index: 5;
+  animation: apparition 0.4s ease both;
+}
+.index ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 40px 28px;
+}
+.index button { display: block; width: 100%; text-align: left; }
+.vignette {
+  display: flex;
+  gap: 2px;
+  height: 150px;
+  align-items: flex-end;
+}
+.vignette img { min-width: 0; max-width: 100%; max-height: 100%; object-fit: contain; object-position: left bottom; }
+.vignette img:only-child { width: auto; }
+.vignette img:not(:only-child) { flex: 1 1 0; width: 0; height: auto; }
+.index-titre { display: block; margin-top: 8px; font-size: 11.5px; color: var(--discret); }
+.index-titre em { color: var(--texte); }
+.index button:hover .index-titre em { color: var(--discret); }
+
+/* ---------- Liste des expositions ---------- */
+
+.expos {
+  display: grid;
+  grid-template-columns: minmax(300px, 41em) 1fr;
+  gap: 48px;
+  height: 100vh;
+}
+.expos-liste {
+  padding: var(--texte-haut) 0 40px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.expos-liste::-webkit-scrollbar { display: none; }
+.expos-liste h2 { font-size: inherit; font-weight: normal; color: var(--discret); margin: 0 0 12px; }
+.expos-liste ul + h2 { margin-top: 30px; }
+.expos-liste li { display: grid; grid-template-columns: 5.5em 1fr; gap: 8px; margin-bottom: 1px; line-height: 1.45; }
+.expos-liste .an { color: var(--discret); }
+.expos-liste span:not(.an) { color: var(--discret); }
+.expos-liste span:not(.an) em { color: var(--discret); }
+.expos-liste a::after { content: " →"; }
+
+.expos-apercu { position: relative; margin: var(--ligne1) var(--respiration) var(--respiration) 0; }
+.expos-apercu img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left top;
+  opacity: 0;
+  transition: opacity var(--fondu) ease;
+}
+.expos-apercu img.visible { opacity: 1; }
+
+/* ---------- À propos / Contact ---------- */
+
+.page-texte {
+  display: grid;
+  grid-template-columns: minmax(0, 34em) minmax(0, 1fr);
+  gap: 72px;
+  padding: var(--texte-haut) var(--respiration) 120px 0; /* 1re ligne alignée sur « PEINTURES » */
+  align-items: start;
+}
+.page-texte h1, .page-texte h2 {
+  font-size: inherit;
+  font-weight: normal;
+  color: var(--discret);
+  margin-bottom: 12px;
+}
+.page-texte section + section { margin-top: 30px; }
+.page-texte p + p { margin-top: 1em; }
+.page-texte .liste li { display: grid; grid-template-columns: 5.5em 1fr; gap: 8px; margin-bottom: 1px; line-height: 1.45; }
+.page-texte .liste .an { color: var(--discret); }
+
+/* Bio : nom, une ligne, un grand paragraphe, puis le CV */
+.page-bio { grid-template-columns: minmax(0, 40em) minmax(0, 1fr); }
+/* Le nom est déjà dans la colonne : seul « Vit et travaille à Paris » est visible */
+.bio-entete p { color: var(--discret); }
+.presentation { font-size: 16px; line-height: 1.45; letter-spacing: 0; margin: 32px 0 24px; }
+.bio-documents { margin-bottom: 44px; }
+.liste-presse li { margin-bottom: 1px; line-height: 1.45; }
+.article { display: block; }
+.fleche { color: var(--discret); }
+/* Lignes du CV et de la presse en gris, comme les dates ; les liens foncent au survol */
+.page-bio .liste, .page-bio .liste-presse { color: var(--discret); }
+.page-bio .liste a:hover, a.article:hover, a.article:hover .fleche { color: var(--texte); }
+
+.portrait { position: sticky; top: var(--respiration); }
+.page-contact { grid-template-columns: auto minmax(0, 1fr); gap: 48px; } /* colonne de l'e-mail au plus juste : le portrait prend le reste */
+.page-contact > div { padding-top: 0; }
+.page-contact .portrait img { height: calc(100vh - var(--ligne1) - var(--respiration)); width: auto; max-width: 100%; max-height: none; }
+.page-contact .reseaux { margin-top: 1.2em; }
+.page-contact .icone { width: 20px; height: 20px; }
+/* Le haut des portraits s'aligne sur le haut des lettres de la 1re ligne */
+.portrait img { margin-top: calc(var(--ligne1) - var(--texte-haut)); }
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 2 * var(--respiration));
+  object-fit: contain;
+  object-position: left top;
+}
+.portrait figcaption { margin-top: 8px; font-size: 10.5px; color: var(--discret); }
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 800px) {
+  :root { --marge: 16px; }
+
+  .colonne {
+    position: sticky;
+    top: 0;
+    width: auto;
+    padding: 16px var(--marge);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    background: var(--fond);
+  }
+  .nom { font-size: 26px; letter-spacing: 2px; }
+  .coin { position: static; margin: 0 16px 0 auto; font-size: 12px; }
+  .expo-info { display: none; }
+  .expo-mobile { display: block; padding: 16px var(--marge) 8px; font-size: 12px; }
+  .expo-mobile h1 { font-size: 13px; font-weight: normal; }
+  .expo-mobile p { margin-top: 8px; }
+  .page-contact { padding-top: 8px; }
+  .page-contact > div { padding-top: 0; }
+  .page-contact .portrait img { height: auto; width: 100%; }
+  .menu-bouton { display: block; font-size: 12px; }
+
+  .menu {
+    display: none;
+    position: fixed;
+    inset: 60px 0 0 0;
+    background: var(--fond);
+    padding: 24px var(--marge);
+    font-size: 16px;
+    overflow-y: auto;
+  }
+  .menu-ouvert .menu { display: flex; }
+  .menu-rubriques { margin-top: 0; font-size: 15px; }
+  .menu-rubriques.menu-infos { margin-top: 18px; }
+  .menu-secondaire { font-size: 15px; }
+  .menu li { margin-bottom: 4px; }
+  /* Téléphone : les actualités restent sur la photo d'accueil (pas dans le menu), en noir, sur le mur clair */
+  [data-page="accueil"] .actualites[data-cote="gauche"] { left: var(--marge); font-size: 10px; }
+  [data-page="accueil"] .actualites .statut { margin-bottom: 7px; } /* espace entre « En ce moment » et les infos */
+  [data-page="accueil"] .actualites[data-cote="gauche"],
+  [data-page="accueil"] .actualites[data-cote="gauche"] a,
+  [data-page="accueil"] .actualites[data-cote="gauche"] .statut { color: #000; }
+  .cartel { display: none; }
+
+  main { margin-left: 0; }
+
+  [data-page="accueil"] .colonne { position: fixed; inset: 0 0 auto 0; background: transparent; }
+
+  /* Menu ouvert : la photo d'accueil en pleine page derrière le nom et le menu, textes en noir */
+  body.menu-ouvert::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9; /* sous la colonne (10) */
+    background: #fff url("../images/accueil/fresque-a.jpg") 50% 45% / cover no-repeat;
+  }
+  .menu-ouvert .colonne, .menu-ouvert .menu { background: transparent; }
+  .menu-ouvert { --texte: #000; --discret: #000; --gris-nom: #000; }
+  .menu-ouvert .colonne a:hover { color: rgba(0, 0, 0, 0.55); }
+
+  /* Sur téléphone, les images sont empilées, chacune avec sa légende */
+  .scene { height: auto; overflow: visible; padding: 8px var(--marge) 80px; }
+  .diapo, .diapo.active {
+    position: static;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    margin-bottom: 56px;
+  }
+  .diapo > img { height: auto; cursor: default; }
+  .panneaux, .video { width: 100%; }
+  .legende-mobile { display: block; margin-top: 10px; font-size: 11.5px; color: var(--discret); }
+  .legende-mobile em { color: var(--texte); }
+  .entrer { display: none; }
+  .index { display: none; }
+
+  .expos { display: block; height: auto; }
+  .expos-liste { padding: 16px var(--marge) 80px; overflow: visible; }
+  .expos-apercu { display: none; }
+
+  .page-texte { grid-template-columns: 1fr; gap: 32px; padding: 8px var(--marge) 80px; }
+  .portrait { position: static; order: -1; }
+  .portrait img { max-height: none; margin-top: 0; }
+  .presentation { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
