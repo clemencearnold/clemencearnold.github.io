@@ -74,7 +74,7 @@ const SITE = {
     { src: "images/dessins/jonas-4.jpg", w: 2198, h: 1516, titre: "Jonas 4", annee: "2023", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Jonas" },  // Jonas 4_Fusain sur papier_21x29cm_2023.jpg
     { src: "images/dessins/jonas-5.jpg", w: 2100, h: 1331, titre: "Jonas 5", annee: "2023", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Jonas" },  // Jonas 5_Fusain sur papier_21x29cm_2023.jpg
     { src: "images/dessins/jonas-6.jpg", w: 1860, h: 1263, titre: "Jonas 6", annee: "2023", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Jonas" },  // Jonas 6_Fusain sur papier_21x29cm_2023.jpg
-    { src: "images/dessins/jonas-x.jpg", w: 1869, h: 1282, titre: "Jonas X", annee: "", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Jonas" },  // FusainJonasX.jpg — À COMPLÉTER
+    { src: "images/dessins/jonas-7.jpg", w: 1869, h: 1282, titre: "Jonas 7", annee: "", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Jonas" },  // FusainJonasX.jpg — À COMPLÉTER
     { src: "images/dessins/woods-i.jpg", w: 2400, h: 1677, titre: "Woods I", annee: "", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "" },  // Woods1.jpg — À COMPLÉTER
     { src: "images/dessins/pierre-et-jean-fusain.jpg", w: 1688, h: 2400, titre: "Pierre et Jean", annee: "2023", technique: "Fusain sur papier", dimensions: "29 × 21 cm", serie: "Lost Eden" },  // Pierre et Jean_Fusain sur papier_29x21cm_2023.jpg
     { src: "images/dessins/algorithme-i-fusain.jpg", w: 2246, h: 1552, titre: "Algorithme I", annee: "", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Algorithmes" },  // FusainAlgo1.jpg — À COMPLÉTER
