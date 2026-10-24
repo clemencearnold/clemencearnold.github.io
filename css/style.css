@@ -440,6 +440,8 @@ main {
 .page-contact > div { padding-top: 0; }
 .page-contact .portrait img { height: calc(100vh - var(--ligne1) - var(--respiration)); width: auto; max-width: 100%; max-height: none; }
 .page-contact .reseaux { margin-top: 1.2em; }
+.contact-reseaux { list-style: none; margin-top: 1.2em; }
+.contact-reseaux li + li { margin-top: 0.3em; }
 .page-contact .icone { width: 20px; height: 20px; }
 /* Le haut des portraits s'aligne sur le haut des lettres de la 1re ligne */
 .portrait img { margin-top: calc(var(--ligne1) - var(--texte-haut)); }

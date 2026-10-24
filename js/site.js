@@ -594,12 +594,16 @@
   /* ---------- Contact ---------- */
 
   function renderContact() {
-    // Seulement l'adresse : le nom, la ville et les réseaux sont déjà dans la colonne et la page Bio
+    // L'adresse, puis les liens Instagram et Vimeo
     document.querySelector("main").innerHTML = `
       <div class="page-texte page-contact">
         <div>
           <h1 class="visuellement-cache">${UI.contact}</h1>
           <p><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></p>
+          <ul class="contact-reseaux">
+            <li><a href="${esc(SITE.instagram)}" target="_blank" rel="noopener">Instagram${flecheExterne}</a></li>
+            <li><a href="${esc(SITE.vimeo)}" target="_blank" rel="noopener">Vimeo${flecheExterne}</a></li>
+          </ul>
         </div>
         ${portrait(SITE.portraits.contact)}
       </div>`;
