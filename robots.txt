@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.clemencearnold.com/sitemap.xml
+Sitemap: https://clemencearnold.com/sitemap.xml
