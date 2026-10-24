@@ -105,11 +105,11 @@ const SITE = {
   ],
 
   paintings: [
-    { src: "images/peintures/a-bas-bruit-ii.jpg", w: 2400, h: 2119, titre: "À bas bruit II", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit II_huile sur bois_25x28cm_2026.jpg
-    { src: "images/peintures/a-bas-bruit-iii.jpg", w: 2400, h: 2136, titre: "À bas bruit III", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit III_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-v.jpg", w: 2152, h: 1912, titre: "À bas bruit V", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit V_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-vi.jpg", w: 1965, h: 1749, titre: "À bas bruit VI", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit VI_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-vii.jpg", w: 2277, h: 2049, titre: "À bas bruit VII", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit VII_huile sur bois_25x28cm_2026.jpg
+    { src: "images/peintures/a-bas-bruit-ii.jpg", w: 2400, h: 2119, titre: "À bas bruit II", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit II_huile sur bois_25x28cm_2026.jpg
+    { src: "images/peintures/a-bas-bruit-iii.jpg", w: 2400, h: 2136, titre: "À bas bruit III", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit III_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-viii.jpg", w: 2400, h: 2125, titre: "À bas bruit VIII", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit VIII_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-x.jpg", w: 1869, h: 1650, titre: "À bas bruit X", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit X_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/feu.jpg", w: 2400, h: 1917, titre: "Feu", annee: "2025", technique: "Huile sur toile", dimensions: "40 × 50 cm", serie: "Palmiers et tempêtes" },  // Palmiers et tempêtes/Feu_huile sur toile_40x50cm_2025.jpg
