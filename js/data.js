@@ -263,21 +263,8 @@ const SITE = {
         { src: "images/expositions/montparnasse-2022/4.jpg", w: 2048, h: 1152, legende: "<em>Ruines du souvenir</em>, 2020" },
       ],
     },
-    {
-      id: "beaurepaire-2021", type: "collective", annee: "2021", titre: "Prix de l'Espace Beaurepaire", lieu: "Espace Beaurepaire, Paris",
-      vues: [
-        { src: "images/expositions/beaurepaire-2021/1.jpg", w: 844, h: 673, legende: "" },
-        { src: "images/expositions/beaurepaire-2021/2.jpg", w: 778, h: 601, legende: "" },
-      ],
-    },
-    {
-      id: "vie-d-artiste-2019", type: "collective", annee: "2019", titre: "Vie d'Artiste", lieu: "Espace Beaurepaire, Paris",
-      vues: [
-        { src: "images/expositions/vie-d-artiste-2019/1.jpg", w: 2400, h: 1314, legende: "" },
-        { src: "images/expositions/vie-d-artiste-2019/2.jpg", w: 2400, h: 1472, legende: "" },
-        { src: "images/expositions/vie-d-artiste-2019/3.jpg", w: 2400, h: 1800, legende: "" },
-      ],
-    },
+    { type: "collective", annee: "2021", titre: "Prix de l'Espace Beaurepaire", lieu: "Espace Beaurepaire, Paris" },
+    { type: "collective", annee: "2019", titre: "Vie d'Artiste", lieu: "Espace Beaurepaire, Paris" },
     { type: "collective", annee: "2019", titre: "87e salon de la Société artistique d'Étampes", lieu: "Étampes" },
     {
       id: "mons-2019", type: "collective", annee: "2019", titre: "De la forêt à moi", lieu: { fr: "Biennale de Mons, Beaux-Arts de Mons, Belgique", en: "Mons Biennial, Beaux-Arts de Mons, Belgium" },
