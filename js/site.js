@@ -335,17 +335,23 @@
     const groupes = (series || [{ nom: null }])
       .map((s) => ({ ...s, oeuvres: oeuvres.filter((o) => s.nom === null || (o.serie || "") === s.nom) }))
       .filter((g) => g.oeuvres.length);
-    const vignettes = (liste) => `
-          <ul>${liste
-            .map(
-              (o) => `
-            <li style="--r:${(o.w && o.h ? o.w / o.h : 16 / 9).toFixed(3)}"><button data-n="${rang.get(o)}">
+    const ratio = (o) => (o.w && o.h ? o.w / o.h : 16 / 9).toFixed(3);
+    const bouton = (o) => `<button data-n="${rang.get(o)}">
               <span class="vignette">${o.vignette ? `<img src="${esc(o.vignette)}" loading="lazy" alt="">` : (o.panneaux || [o]).map((p) => `<img src="${esc(vignette(p.src))}" loading="lazy" alt="">`).join("")}</span>
               <span class="index-titre"><em>${esc(o.titre)}</em>${o.annee ? ", " + esc(o.annee) : ""}</span>
-            </button></li>`
-            )
-            .join("")}
-          </ul>`;
+            </button>`;
+    // « lier » : l'œuvre et la suivante forment un seul élément, que le retour à la ligne ne sépare pas
+    const vignettes = (liste) => {
+      const items = [];
+      liste.forEach((o, i) => {
+        if (i && liste[i - 1].lier) return;
+        const suivante = o.lier && liste[i + 1];
+        items.push(suivante
+          ? `<li class="lies"><div style="--r:${ratio(o)}">${bouton(o)}</div><div style="--r:${ratio(suivante)}">${bouton(suivante)}</div></li>`
+          : `<li style="--r:${ratio(o)}">${bouton(o)}</li>`);
+      });
+      return `<ul>${items.join("")}</ul>`;
+    };
     const section = (g) =>
       g.nom === null
         ? vignettes(g.oeuvres)

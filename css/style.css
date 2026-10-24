@@ -338,6 +338,8 @@ main {
   gap: 34px 22px;
 }
 .index li { width: calc(var(--haut-vignette) * var(--r)); min-width: 70px; }
+.index li.lies { width: auto; display: flex; align-items: flex-start; gap: inherit; }
+.index li.lies > div { width: calc(var(--haut-vignette) * var(--r)); min-width: 70px; }
 .index button { display: block; width: 100%; text-align: left; }
 .vignette {
   display: flex;
