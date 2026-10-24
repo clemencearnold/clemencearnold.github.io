@@ -22,7 +22,7 @@
       expoSuivante: "Exposition suivante", toutesExpos: "Toutes les expositions",
       personnelle: "Expositions personnelles", collective: "Expositions collectives", residence: "Résidences",
       formation: "Formation", prix: "Prix", projets: "Projets dans l'espace public", presse: "Presse",
-      portfolio: "Portfolio (PDF)",
+      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio",
       mois: ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
     },
     en: {
@@ -35,7 +35,7 @@
       expoSuivante: "Next exhibition", toutesExpos: "All exhibitions",
       personnelle: "Solo exhibitions", collective: "Group exhibitions", residence: "Residencies",
       formation: "Education", prix: "Awards", projets: "Public projects", presse: "Press",
-      portfolio: "Portfolio (PDF)",
+      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio",
       mois: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     },
   }[langue];
@@ -84,6 +84,10 @@
       ["about.html", UI.apropos, "about"],
       ["contact.html", UI.contact, "contact"],
     ];
+    // Le portfolio (PDF) ouvre le 2e bloc du menu, au-dessus d'Expositions, sur toutes les pages
+    const portfolio = SITE.documents.portfolio
+      ? `<li class="menu-portfolio"><a href="${esc(SITE.documents.portfolio)}" target="_blank" rel="noopener">${UI.portfolioMenu}<span aria-hidden="true"> ↗</span></a></li>`
+      : "";
     const liste = (rubriques) =>
       rubriques.map(([href, label, id]) => `<li><a href="${lien(href)}"${page === id ? ' aria-current="page"' : ""}>${label}</a></li>`).join("");
 
@@ -103,7 +107,7 @@
       <button class="menu-bouton" aria-expanded="false" aria-controls="menu">${UI.menu}</button>
       <nav id="menu" class="menu">
         <ul class="menu-rubriques">${liste(oeuvres)}</ul>
-        <ul class="menu-rubriques menu-infos">${liste(infos)}</ul>
+        <ul class="menu-rubriques menu-infos">${portfolio}${liste(infos)}</ul>
         <ul class="menu-secondaire">
           <li class="reseaux">${reseaux()}</li>
         </ul>
@@ -151,13 +155,10 @@
     return "";
   }
 
-  // Bloc posé sur la photo d'accueil : l'exposition en cours ou à venir, puis le lien vers le portfolio
+  // Bloc posé sur la photo d'accueil : l'exposition en cours ou à venir
   function renderActualites() {
     const items = SITE.actualites.filter(statut);
-    const portfolio = SITE.documents.portfolio
-      ? `<p class="actualites-portfolio"><a href="${esc(SITE.documents.portfolio)}" target="_blank" rel="noopener">${UI.portfolio}<span aria-hidden="true"> ↗</span></a></p>`
-      : "";
-    if (!items.length && !portfolio) return "";
+    if (!items.length) return "";
     return `
       <section class="actualites">
         ${items
@@ -170,7 +171,6 @@
           </p>`
           )
           .join("")}
-        ${portfolio}
       </section>`;
   }
 

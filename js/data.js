@@ -368,6 +368,20 @@ const SITE = {
   // PEINTURES MURALES : un projet = quelques vues, du plus récent au plus ancien
   murales: [
     {
+      // Fresque peinte in situ dans la chapelle pour l'exposition « À bas bruit ». Vues : outils/preparer.py (MURALES)
+      id: "a-bas-bruit-fresque",
+      titre: "À bas bruit", annee: "2026",
+      lieu: { fr: "Chapelle du Centre culturel de La Visitation, Périgueux", en: "Chapel, La Visitation cultural centre, Périgueux" },
+      technique: { fr: "Peinture murale in situ", en: "Site-specific mural" }, dimensions: "",
+      credit: "© Luc Fauret",
+      vues: [
+        { src: "images/murales/a-bas-bruit-fresque/1.jpg", w: 2400, h: 1601, legende: "" },
+        { src: "images/murales/a-bas-bruit-fresque/2.jpg", w: 2400, h: 1601, legende: "" },
+        { src: "images/murales/a-bas-bruit-fresque/3.jpg", w: 2400, h: 1601, legende: "" },
+        { src: "images/murales/a-bas-bruit-fresque/4.jpg", w: 2400, h: 1601, legende: "" },
+      ],
+    },
+    {
       // Année : 2022 selon toi, 2023 dans le CV du dossier Banjul — à vérifier. Technique à préciser.
       titre: { fr: "Peinture murale dans l'espace public", en: "Mural in public space" }, annee: "2022",
       lieu: { fr: "Ateliers Daguerre, Paris 14e", en: "Ateliers Daguerre, Paris 14th" },
