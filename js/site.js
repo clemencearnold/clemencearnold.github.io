@@ -381,34 +381,58 @@
     if (nomDemande !== undefined && nomDemande !== null && demande) serie = nomDemande;
     const depart = (serie === null ? selection : parcoursSerie(serie))[(parseInt(location.hash.slice(1), 10) || 1) - 1];
 
+    // Téléphone : les œuvres sont empilées ; une barre en tête donne accès à l'index et, dans une série, au retour
+    const barreMobile = `
+      <div class="barre-mobile">
+        <button class="bouton-index" aria-expanded="false"><span class="icone-grille" aria-hidden="true"></span><span class="libelle">${UI.index}</span></button>
+        <p class="serie-mobile" hidden><span class="serie-mobile-nom"></span><button class="retour-mobile">← ${UI.selection}</button></p>
+      </div>`;
+
     const d = diaporama(diapos, {
-      boucle: true, apres: index, depart: depart ?? 0, compteur, adresse,
+      boucle: true, avant: barreMobile, apres: index, depart: depart ?? 0, compteur, adresse,
       parcours: serie === null ? selection : parcoursSerie(serie),
     });
-    const retour = document.querySelector(".bouton-selection");
+    const elements = [...document.querySelector(".scene").children];
+    const mobile = () => matchMedia("(max-width: 800px), (max-height: 500px)").matches;
+
+    // Sur téléphone, n'afficher que les œuvres du parcours (la sélection, ou la série choisie dans l'index)
+    const filtrer = () => {
+      const liste = serie === null ? null : parcoursSerie(serie);
+      document.querySelector(".scene").classList.toggle("filtre-serie", liste !== null);
+      elements.forEach((el, i) => el.classList.toggle("dans-serie", !!liste && liste.includes(i)));
+      document.querySelector(".serie-mobile").hidden = serie === null;
+      document.querySelector(".serie-mobile-nom").textContent = serie === null ? "" : serie || UI.horsSerie;
+    };
+    const retours = document.querySelectorAll(".bouton-selection, .retour-mobile");
     const changerParcours = (nom, n) => {
       serie = nom;
-      retour.hidden = serie === null;
+      document.querySelector(".bouton-selection").hidden = serie === null;
       d.parcours(serie === null ? selection : parcoursSerie(serie), n);
+      filtrer();
+      // une fois l'index refermé et la liste filtrée, on amène l'œuvre choisie en haut de l'écran
+      if (mobile()) requestAnimationFrame(() => requestAnimationFrame(() => (serie === null ? scrollTo(0, 0) : elements[n].scrollIntoView())));
     };
-    retour.hidden = serie === null;
-    retour.addEventListener("click", () => changerParcours(null, selection[0]));
+    document.querySelector(".bouton-selection").hidden = serie === null;
+    filtrer();
+    retours.forEach((b) => b.addEventListener("click", () => changerParcours(null, selection[0])));
     initIndex((n) => changerParcours(series ? serieDe(n) : null, n));
   }
 
   function initIndex(ouvrir) {
     const panneau = document.querySelector(".index");
-    const bouton = document.querySelector(".bouton-index");
+    const boutons = document.querySelectorAll(".bouton-index"); // colonne (ordinateur) et barre (téléphone)
 
     function basculer(ouvert) {
       panneau.hidden = !ouvert;
       document.body.classList.toggle("index-ouvert", ouvert);
-      bouton.querySelector(".libelle").textContent = ouvert ? UI.fermerIndex : UI.index;
-      bouton.setAttribute("aria-expanded", ouvert);
+      boutons.forEach((bouton) => {
+        bouton.querySelector(".libelle").textContent = ouvert ? UI.fermerIndex : UI.index;
+        bouton.setAttribute("aria-expanded", ouvert);
+      });
       if (ouvert) panneau.scrollTop = 0;
     }
 
-    bouton.addEventListener("click", () => basculer(panneau.hidden));
+    boutons.forEach((bouton) => bouton.addEventListener("click", () => basculer(panneau.hidden)));
     panneau.addEventListener("click", (e) => {
       const b = e.target.closest("button[data-n]");
       if (!b) return;
