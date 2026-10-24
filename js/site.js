@@ -16,7 +16,7 @@
       peintures: "Peintures", dessins: "Dessins", murales: "Peintures murales", videos: "Vidéos & images", expositions: "Expositions", apropos: "Bio", contact: "Contact",
       precedente: "Image précédente", suivante: "Image suivante",
       index: "Toutes les œuvres", fermerIndex: "Fermer", menu: "Menu", fermer: "Fermer",
-      selection: "La sélection", serie: (nom) => `Série ${nom}`, horsSerie: "Hors série", anciennes: "Séries antérieures", collection: "Collection particulière",
+      selection: "La sélection", horsSerie: "Hors série", anciennes: "Séries antérieures", collection: "Collection particulière",
       enCours: "En ce moment", aVenir: "À venir",
       vue: "Vue d'exposition",
       expoSuivante: "Exposition suivante", toutesExpos: "Toutes les expositions",
@@ -29,7 +29,7 @@
       peintures: "Paintings", dessins: "Drawings", murales: "Murals", videos: "Video & images", expositions: "Exhibitions", apropos: "Bio", contact: "Contact",
       precedente: "Previous image", suivante: "Next image",
       index: "All works", fermerIndex: "Close", menu: "Menu", fermer: "Close",
-      selection: "The selection", serie: (nom) => `${nom} series`, horsSerie: "Other works", anciennes: "Earlier series", collection: "Private collection",
+      selection: "The selection", horsSerie: "Other works", anciennes: "Earlier series", collection: "Private collection",
       enCours: "Now on", aVenir: "Upcoming",
       vue: "Installation view",
       expoSuivante: "Next exhibition", toutesExpos: "All exhibitions",
@@ -182,7 +182,7 @@
   function legendePeinture(o) {
     return (
       lignes([`<em>${esc(o.titre)}</em>`, esc(t(o.technique)), esc(dimensions(o.dimensions)), esc(o.annee), o.collection && UI.collection, o.credit && `<span class="credit">${esc(o.credit)}</span>`]) +
-      (o.serie ? `<span class="cartel-serie">${UI.serie(esc(o.serie))}</span>` : "")
+      (o.serie ? `<span class="cartel-serie">${esc(o.serie)}</span>` : "")
     );
   }
 
