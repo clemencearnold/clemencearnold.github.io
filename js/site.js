@@ -220,23 +220,25 @@
     if (!bloc) return;
     const k = Math.max(innerWidth / im.w, innerHeight / im.h);
     const y0 = (innerHeight - im.h * k) * CADRAGE_ACCUEIL; // = object-position vertical de la photo (CSS)
-    const telephone = matchMedia("(max-width: 800px)").matches;
+    // Téléphone tenu en portrait : bloc sur le mur, à gauche de la personne. En paysage, comme sur ordinateur.
+    const telephone = matchMedia("(max-width: 800px) and (orientation: portrait)").matches;
+    const petitEcran = matchMedia("(max-width: 800px), (max-height: 500px)").matches;
     const bas = telephone ? TELEPHONE.bas : ZONE_ACTUALITES[bloc.dataset.cote] || ZONE_ACTUALITES.gauche;
-    if (telephone) {
+    if (petitEcran) {
       const x0 = (innerWidth - im.w * k) * 0.5;
       bloc.style.maxWidth = `${Math.round(x0 + TELEPHONE.personne * im.w * k - bloc.offsetLeft - 12)}px`;
     } else {
       bloc.style.removeProperty("max-width");
     }
     let y = y0 + bas * im.h * k; // bas du bloc, en pixels depuis le haut
-    // Sous le menu, le bloc ne doit ni toucher les pictogrammes ni descendre sur le sol.
-    // S'il n'y a pas la place entre les deux (écran peu haut), il se décale à droite de la colonne du menu.
+    // Le bloc ne doit ni remonter jusqu'à ce qui est au-dessus (le menu sur ordinateur, la barre du nom sur
+    // téléphone en paysage) ni descendre sur le sol. Sur ordinateur, faute de place, il passe à droite du menu.
     bloc.classList.remove("a-droite-du-menu");
-    const icones = document.querySelector(".menu-infos"); // dernier élément du menu au-dessus du bloc
-    if (!telephone && bloc.dataset.cote === "gauche" && icones) {
-      const minimum = icones.getBoundingClientRect().bottom + 20 + bloc.offsetHeight;
+    const dessus = document.querySelector(petitEcran ? ".colonne" : ".menu-infos");
+    if (!telephone && bloc.dataset.cote === "gauche" && dessus) {
+      const minimum = dessus.getBoundingClientRect().bottom + (petitEcran ? 12 : 20) + bloc.offsetHeight;
       const sol = y0 + SOL * im.h * k - 12;
-      if (minimum > sol) bloc.classList.add("a-droite-du-menu");
+      if (minimum > sol && !petitEcran) bloc.classList.add("a-droite-du-menu");
       else y = Math.max(y, minimum);
     }
     bloc.style.bottom = `${Math.round(innerHeight - y)}px`;
@@ -263,7 +265,7 @@
       placerActualites();
     };
     coteActualites(0);
-    addEventListener("resize", placerActualites);
+    addEventListener("resize", placerActualites); // y compris quand le téléphone pivote
     if (images.length < 2) return;
 
     const zone = document.querySelector(".accueil-plein");
@@ -489,7 +491,7 @@
   // La colonne (titre, lieu, texte), le compteur et l'adresse suivent l'exposition affichée.
   // Sur téléphone, les vues sont empilées : on ne montre que l'exposition demandée.
   function renderExpo(e) {
-    const mobile = matchMedia("(max-width: 800px)").matches;
+    const mobile = matchMedia("(max-width: 800px), (max-height: 500px)").matches;
     const liste = mobile ? [e] : avecVues;
     const diapos = [];
     let depart = 0;
@@ -618,7 +620,7 @@
     const compteur = document.querySelector(".compteur");
     const prec = document.querySelector(".prec");
     const suiv = document.querySelector(".suiv");
-    const mobile = matchMedia("(max-width: 800px)");
+    const mobile = matchMedia("(max-width: 800px), (max-height: 500px)");
     const dernier = elements.length - 1;
     let courant = -1;
     let ordre = parcours || elements.map((_, i) => i);

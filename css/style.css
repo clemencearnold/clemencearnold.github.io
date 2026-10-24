@@ -454,7 +454,8 @@ main {
 
 /* ---------- Mobile ---------- */
 
-@media (max-width: 800px) {
+/* Version téléphone : écrans étroits, et aussi écrans très bas (téléphone tenu en paysage) */
+@media (max-width: 800px), (max-height: 500px) {
   :root { --marge: 16px; }
 
   .colonne {
@@ -538,7 +539,7 @@ main {
     visibility: visible;
     margin-bottom: 56px;
   }
-  .diapo > img { height: auto; cursor: default; }
+  .diapo > img { width: auto; max-width: 100%; height: auto; max-height: calc(100svh - 96px); cursor: default; } /* l'œuvre entière tient dans l'écran, même en paysage */
   .panneaux, .video { width: 100%; }
   .legende-mobile { display: block; margin-top: 10px; font-size: 11.5px; color: var(--discret); }
   .legende-mobile em { color: var(--texte); }
@@ -554,6 +555,13 @@ main {
   .portrait { position: static; order: -1; }
   .portrait img { max-height: none; margin-top: 0; }
   .presentation { font-size: 15px; }
+}
+
+/* Téléphone en paysage : actualité placée comme sur ordinateur, au-dessus du sol, donc dans la couleur de la fresque */
+@media (max-width: 800px) and (orientation: landscape), (max-height: 500px) and (orientation: landscape) {
+  [data-page="accueil"] .actualites[data-cote="gauche"],
+  [data-page="accueil"] .actualites[data-cote="gauche"] a,
+  [data-page="accueil"] .actualites[data-cote="gauche"] .statut { color: var(--actu-couleur, #db8447); }
 }
 
 @media (prefers-reduced-motion: reduce) {
