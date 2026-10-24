@@ -208,6 +208,9 @@
   // La photo est recadrée par object-fit: cover : on convertit la hauteur du sol (en part de l'image) en pixels d'écran.
   const ZONE_ACTUALITES = { droite: 0.775, gauche: 0.779 }; // juste au-dessus de la ligne du sol (0,795), quelle que soit la taille de l'écran
   const SOL = 0.795;
+  // Zones sombres du mur juste au-dessus du sol (en part de la largeur de la photo) : le texte s'y lit mieux.
+  // Entre les deux, le mur est plus clair (de 0,15 à 0,22 environ).
+  const MUR_SOMBRE = [{ debut: 0.02, fin: 0.155 }, { debut: 0.25, fin: 0.4 }];
   // Téléphone : le bloc se cale entre le bord gauche et la personne (dont le bras gauche est à ~50 % de la largeur de la photo),
   // sur le mur clair, au-dessus de la bande sombre (texte noir)
   const TELEPHONE = { bas: 0.545, personne: 0.5 };
@@ -242,6 +245,19 @@
       else y = Math.max(y, minimum);
     }
     bloc.style.bottom = `${Math.round(innerHeight - y)}px`;
+
+    // Horizontalement (ordinateur et téléphone en paysage) : sur la première zone sombre où le bloc tient en entier.
+    // Quand la fenêtre rétrécit, la photo est rognée sur les côtés et le bloc glisse vers la seconde zone.
+    if (!telephone && bloc.dataset.cote === "gauche") {
+      const W = im.w * k, x0 = (innerWidth - W) * 0.5;
+      const marge = petitEcran ? 16 : 24;
+      const minimum = bloc.classList.contains("a-droite-du-menu") ? document.querySelector(".colonne").offsetWidth : marge;
+      bloc.classList.remove("a-droite-du-menu");
+      const zone = MUR_SOMBRE.find((z) => Math.max(minimum, x0 + z.debut * W) + bloc.offsetWidth <= x0 + z.fin * W) || MUR_SOMBRE[MUR_SOMBRE.length - 1];
+      bloc.style.left = `${Math.round(Math.max(minimum, x0 + zone.debut * W))}px`;
+    } else {
+      bloc.style.removeProperty("left");
+    }
   }
 
   // Photo en pleine page ; le menu passe par-dessus (en noir).
