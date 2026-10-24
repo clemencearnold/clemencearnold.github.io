@@ -105,7 +105,7 @@
           ${langue === "en" ? '<span aria-current="true">EN</span>' : `<a href="${autre}" hreflang="en" lang="en">EN</a>`}
         </p>
       </div>
-      <button class="menu-bouton" aria-expanded="false" aria-controls="menu">${UI.menu}</button>
+      <button class="menu-bouton" aria-expanded="false" aria-controls="menu" aria-label="${UI.menu}"><span class="burger" aria-hidden="true"></span></button>
       <nav id="menu" class="menu">
         <ul class="menu-rubriques">${liste(oeuvres)}</ul>
         <ul class="menu-rubriques menu-infos">${portfolio}${liste(infos)}</ul>
@@ -135,7 +135,7 @@
     bouton.addEventListener("click", () => {
       const ouvert = document.body.classList.toggle("menu-ouvert");
       bouton.setAttribute("aria-expanded", ouvert);
-      bouton.textContent = ouvert ? UI.fermer : UI.menu;
+      bouton.setAttribute("aria-label", ouvert ? UI.fermer : UI.menu);
     });
   }
 

@@ -476,7 +476,19 @@ main {
   .page-contact { padding-top: 8px; }
   .page-contact > div { padding-top: 0; }
   .page-contact .portrait img { height: auto; width: 100%; }
-  .menu-bouton { display: block; font-size: 12px; }
+  /* Menu « burger » : trois traits, qui deviennent une croix quand le menu est ouvert */
+  .menu-bouton { display: block; width: 26px; height: 20px; padding: 0; position: relative; align-self: center; }
+  .burger, .burger::before, .burger::after {
+    position: absolute; left: 2px; right: 2px; height: 1.5px; background: var(--texte);
+    transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
+  }
+  .burger { top: 50%; margin-top: -0.75px; }
+  .burger::before, .burger::after { content: ""; left: 0; right: 0; }
+  .burger::before { top: -7px; }
+  .burger::after { top: 7px; }
+  .menu-ouvert .burger { background: transparent; }
+  .menu-ouvert .burger::before { top: 0; transform: rotate(45deg); background: var(--texte); }
+  .menu-ouvert .burger::after { top: 0; transform: rotate(-45deg); background: var(--texte); }
 
   .menu {
     display: none;
