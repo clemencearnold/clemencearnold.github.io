@@ -16,6 +16,7 @@
       peintures: "Peintures", dessins: "Dessins", murales: "Peintures murales", videos: "Vidéos & images", expositions: "Expositions", apropos: "Bio", contact: "Contact",
       precedente: "Image précédente", suivante: "Image suivante",
       index: "Toutes les œuvres", fermerIndex: "Fermer", menu: "Menu", fermer: "Fermer",
+      selection: "La sélection", horsSerie: "Hors série", anciennes: "Séries antérieures", collection: "Collection particulière",
       enCours: "En ce moment", aVenir: "À venir",
       vue: "Vue d'exposition",
       expoSuivante: "Exposition suivante", toutesExpos: "Toutes les expositions",
@@ -28,6 +29,7 @@
       peintures: "Paintings", dessins: "Drawings", murales: "Murals", videos: "Video & images", expositions: "Exhibitions", apropos: "Bio", contact: "Contact",
       precedente: "Previous image", suivante: "Next image",
       index: "All works", fermerIndex: "Close", menu: "Menu", fermer: "Close",
+      selection: "The selection", horsSerie: "Other works", anciennes: "Earlier series", collection: "Private collection",
       enCours: "Now on", aVenir: "Upcoming",
       vue: "Installation view",
       expoSuivante: "Next exhibition", toutesExpos: "All exhibitions",
@@ -114,7 +116,7 @@
             <button class="suiv" aria-label="${UI.suivante}">→</button>
             <span class="compteur"></span>
           </p>
-          ${["paintings", "drawings"].includes(page) ? `<p class="cartel-index"><button class="bouton-index" aria-expanded="false"><span class="icone-grille" aria-hidden="true"></span><span class="libelle">${UI.index}</span></button></p>` : ""}
+          ${["paintings", "drawings"].includes(page) ? `<p class="cartel-index"><button class="bouton-index" aria-expanded="false"><span class="icone-grille" aria-hidden="true"></span><span class="libelle">${UI.index}</span></button><button class="bouton-selection" hidden>← ${UI.selection}</button></p>` : ""}
         </div>` : ""}
       </nav>`;
 
@@ -171,7 +173,7 @@
 
   function legendePeinture(o) {
     return (
-      lignes([`<em>${esc(o.titre)}</em>`, esc(t(o.technique)), esc(dimensions(o.dimensions)), esc(o.annee), o.credit && `<span class="credit">${esc(o.credit)}</span>`]) +
+      lignes([`<em>${esc(o.titre)}</em>`, esc(t(o.technique)), esc(dimensions(o.dimensions)), esc(o.annee), o.collection && UI.collection, o.credit && `<span class="credit">${esc(o.credit)}</span>`]) +
       (o.serie ? `<span class="cartel-serie">${esc(o.serie)}</span>` : "")
     );
   }
@@ -202,12 +204,15 @@
   // Téléphone : le bloc se cale entre le bord gauche et la personne (dont le bras gauche est à ~50 % de la largeur de la photo),
   // sur le mur clair, au-dessus de la bande sombre (texte noir)
   const TELEPHONE = { bas: 0.545, personne: 0.5 };
+  // La photo est calée sur son bas : quand la fenêtre est plus large que la photo, c'est le haut du mur
+  // qui est rogné, jamais le sol (doit correspondre à object-position dans style.css)
+  const CADRAGE_ACCUEIL = 1;
   function placerActualites() {
     const bloc = document.querySelector(".actualites");
     const im = SITE.accueil[0];
     if (!bloc) return;
     const k = Math.max(innerWidth / im.w, innerHeight / im.h);
-    const y0 = (innerHeight - im.h * k) * 0.45; // object-position: 50% 45%
+    const y0 = (innerHeight - im.h * k) * CADRAGE_ACCUEIL; // = object-position vertical de la photo (CSS)
     const telephone = matchMedia("(max-width: 800px)").matches;
     const bas = telephone ? TELEPHONE.bas : ZONE_ACTUALITES[bloc.dataset.cote] || ZONE_ACTUALITES.gauche;
     if (telephone) {
@@ -274,46 +279,106 @@
 
   /* ---------- Peintures ---------- */
 
-  // Peintures et dessins : même défilement, même index « Toutes les œuvres »
-  function renderPaintings(oeuvres = SITE.paintings) {
-    const diapos = oeuvres.map((o) => ({ html: media(o, o.titre), legende: legendePeinture(o), compte: true, classe: o.centrer ? "diapo-centree" : "" }));
+  // Peintures et dessins : même défilement, même index « Toutes les œuvres ».
+  // Deux parcours dans le même diaporama :
+  //  - la sélection (scénographie) : les œuvres dans l'ordre de data.js, sans celles marquées hors: true ;
+  //  - une série : ouverte depuis l'index, toutes les œuvres de la série, y compris hors sélection.
+  const slug = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "hors-serie";
 
-    const index = `
-      <div class="index" hidden>
-        <ul>
-          ${oeuvres
+  function renderPaintings(oeuvres = SITE.paintings, series = null) {
+    // La sélection d'abord, puis les œuvres visibles seulement depuis l'index
+    const ordre = [...oeuvres.filter((o) => !o.hors), ...oeuvres.filter((o) => o.hors)];
+    const rang = new Map(ordre.map((o, n) => [o, n]));
+    const selection = ordre.map((o, n) => (o.hors ? -1 : n)).filter((n) => n >= 0);
+    const diapos = ordre.map((o) => ({
+      html: media(o, o.titre),
+      legende: legendePeinture(o),
+      compte: !o.hors,
+      classe: [o.centrer && "diapo-centree", o.hors && "diapo-hors"].filter(Boolean).join(" "),
+    }));
+
+    // Groupes de l'index : une section par série (dans l'ordre de SITE.series), sinon une seule liste
+    const groupes = (series || [{ nom: null }])
+      .map((s) => ({ ...s, oeuvres: oeuvres.filter((o) => s.nom === null || (o.serie || "") === s.nom) }))
+      .filter((g) => g.oeuvres.length);
+    const vignettes = (liste) => `
+          <ul>${liste
             .map(
-              (o, n) => `
-            <li><button data-n="${n}">
+              (o) => `
+            <li><button data-n="${rang.get(o)}">
               <span class="vignette">${(o.panneaux || [o]).map((p) => `<img src="${esc(vignette(p.src))}" loading="lazy" alt="">`).join("")}</span>
               <span class="index-titre"><em>${esc(o.titre)}</em>${o.annee ? ", " + esc(o.annee) : ""}</span>
             </button></li>`
             )
             .join("")}
-        </ul>
+          </ul>`;
+    const section = (g) =>
+      g.nom === null
+        ? vignettes(g.oeuvres)
+        : `<section class="index-serie${g.ancienne ? " ancienne" : ""}">
+            <h2>${esc(g.nom || UI.horsSerie)}</h2>
+            ${g.texte ? `<p class="index-texte">${esc(t(g.texte))}</p>` : ""}
+            ${vignettes(g.oeuvres)}
+          </section>`;
+    const recentes = groupes.filter((g) => !g.ancienne), anciennes = groupes.filter((g) => g.ancienne);
+    const index = `
+      <div class="index" hidden>
+        ${recentes.map(section).join("")}
+        ${anciennes.length ? `<div class="index-anciennes"><h2 class="index-anciennes-titre">${UI.anciennes}</h2>${anciennes.map(section).join("")}</div>` : ""}
       </div>`;
 
-    const d = diaporama(diapos, { boucle: true, apres: index });
-    initIndex(d);
+    // Parcours : la sélection, ou une série (?serie=nom-de-serie#3 dans l'adresse)
+    const serieDe = (n) => ordre[n].serie || "";
+    const parcoursSerie = (nom) => oeuvres.filter((o) => (o.serie || "") === nom).map((o) => rang.get(o));
+    let serie = null;
+    const compteur = (n) => {
+      const liste = serie === null ? selection : parcoursSerie(serie);
+      const p = liste.indexOf(n);
+      return p < 0 ? "" : `${p + 1} / ${liste.length}`;
+    };
+    const adresse = (n) => {
+      const liste = serie === null ? selection : parcoursSerie(serie);
+      const p = liste.indexOf(n);
+      return location.pathname + (serie === null ? "" : `?serie=${slug(serie)}`) + (p > 0 ? `#${p + 1}` : "");
+    };
+
+    const demande = params.get("serie");
+    const nomDemande = demande && [...new Set(oeuvres.map((o) => o.serie || ""))].find((nom) => slug(nom) === demande);
+    if (nomDemande !== undefined && nomDemande !== null && demande) serie = nomDemande;
+    const depart = (serie === null ? selection : parcoursSerie(serie))[(parseInt(location.hash.slice(1), 10) || 1) - 1];
+
+    const d = diaporama(diapos, {
+      boucle: true, apres: index, depart: depart ?? 0, compteur, adresse,
+      parcours: serie === null ? selection : parcoursSerie(serie),
+    });
+    const retour = document.querySelector(".bouton-selection");
+    const changerParcours = (nom, n) => {
+      serie = nom;
+      retour.hidden = serie === null;
+      d.parcours(serie === null ? selection : parcoursSerie(serie), n);
+    };
+    retour.hidden = serie === null;
+    retour.addEventListener("click", () => changerParcours(null, selection[0]));
+    initIndex((n) => changerParcours(series ? serieDe(n) : null, n));
   }
 
-  function initIndex(d) {
+  function initIndex(ouvrir) {
     const panneau = document.querySelector(".index");
     const bouton = document.querySelector(".bouton-index");
 
-    function basculer(ouvrir) {
-      panneau.hidden = !ouvrir;
-      document.body.classList.toggle("index-ouvert", ouvrir);
-      bouton.querySelector(".libelle").textContent = ouvrir ? UI.fermerIndex : UI.index;
-      bouton.setAttribute("aria-expanded", ouvrir);
-      if (ouvrir) panneau.scrollTop = 0;
+    function basculer(ouvert) {
+      panneau.hidden = !ouvert;
+      document.body.classList.toggle("index-ouvert", ouvert);
+      bouton.querySelector(".libelle").textContent = ouvert ? UI.fermerIndex : UI.index;
+      bouton.setAttribute("aria-expanded", ouvert);
+      if (ouvert) panneau.scrollTop = 0;
     }
 
     bouton.addEventListener("click", () => basculer(panneau.hidden));
     panneau.addEventListener("click", (e) => {
       const b = e.target.closest("button[data-n]");
       if (!b) return;
-      d.montrer(+b.dataset.n);
+      ouvrir(+b.dataset.n);
       basculer(false);
     });
     addEventListener("keydown", (e) => { if (e.key === "Escape" && !panneau.hidden) basculer(false); });
@@ -514,7 +579,8 @@
 
   /* ---------- Diaporama : une image à la fois, en fondu ---------- */
 
-  function diaporama(diapos, { boucle, avant = "", apres = "", depart = null, compteur: texteCompteur = null, adresse = null, surChangement = null }) {
+  // parcours : les diapositives que les flèches font défiler, dans l'ordre (toutes par défaut)
+  function diaporama(diapos, { boucle, avant = "", apres = "", depart = null, compteur: texteCompteur = null, adresse = null, surChangement = null, parcours = null }) {
     document.querySelector("main").innerHTML = `${avant}
       <div class="scene">
         ${diapos
@@ -541,6 +607,7 @@
     const mobile = matchMedia("(max-width: 800px)");
     const dernier = elements.length - 1;
     let courant = -1;
+    let ordre = parcours || elements.map((_, i) => i);
 
     function charger(n) {
       if (!elements[n]) return;
@@ -559,10 +626,10 @@
       });
     }
 
-    function montrer(n) {
+    function montrer(n, forcer = false) {
       if (boucle) n = (n + elements.length) % elements.length;
       n = Math.max(0, Math.min(dernier, n));
-      if (n === courant) return;
+      if (n === courant && !forcer) return;
       courant = n;
       elements.forEach((el, i) => {
         el.classList.toggle("active", i === n);
@@ -580,7 +647,11 @@
       if (surChangement) surChangement(n);
     }
 
-    const avancer = (pas) => montrer(courant + pas);
+    const avancer = (pas) => {
+      const p = Math.max(0, ordre.indexOf(courant));
+      const q = boucle ? (p + pas + ordre.length) % ordre.length : Math.max(0, Math.min(ordre.length - 1, p + pas));
+      montrer(ordre[q]);
+    };
     const actif = () => !mobile.matches && !document.body.classList.contains("index-ouvert");
 
     prec.addEventListener("click", () => avancer(-1));
@@ -600,8 +671,8 @@
       if (!actif() || (e.key === " " && e.target.closest("a, button, video"))) return;
       if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(e.key)) { e.preventDefault(); avancer(1); }
       if (["ArrowLeft", "ArrowUp", "PageUp"].includes(e.key)) { e.preventDefault(); avancer(-1); }
-      if (e.key === "Home") montrer(0);
-      if (e.key === "End") montrer(dernier);
+      if (e.key === "Home") montrer(ordre[0]);
+      if (e.key === "End") montrer(ordre[ordre.length - 1]);
     });
 
     // Molette / trackpad : un geste = une image, dans un sens ou dans l'autre.
@@ -637,14 +708,18 @@
 
     // Lien direct vers une image : paintings.html#3
     montrer(depart ?? (parseInt(location.hash.slice(1), 10) || 1) - 1);
-    return { montrer };
+    return {
+      montrer,
+      // Changer de parcours (sélection ↔ série) et afficher la diapositive n
+      parcours: (liste, n) => { ordre = liste; montrer(n, true); },
+    };
   }
 
   /* ---------- Démarrage ---------- */
 
   renderNav();
   if (page === "accueil") renderAccueil();
-  if (page === "paintings") renderPaintings();
+  if (page === "paintings") renderPaintings(SITE.paintings, SITE.series);
   if (page === "drawings") renderPaintings(SITE.dessins);
   if (page === "murals") renderMurales();
   if (page === "videos") renderVideos();

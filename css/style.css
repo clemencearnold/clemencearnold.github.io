@@ -192,7 +192,7 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 45%;
+  object-position: 50% 100%; /* calée en bas : le sol n'est jamais coupé (voir CADRAGE_ACCUEIL dans site.js) */
   opacity: 0;
   transition: opacity var(--fondu) ease;
 }
@@ -337,6 +337,24 @@ main {
 .vignette img { min-width: 0; max-width: 100%; max-height: 100%; object-fit: contain; object-position: left bottom; }
 .vignette img:only-child { width: auto; }
 .vignette img:not(:only-child) { flex: 1 1 0; width: 0; height: auto; }
+/* Index par séries : un titre par série ; les séries antérieures en dessous, en plus petit */
+.index-serie + .index-serie, .index-anciennes { margin-top: 56px; }
+.index-serie h2, .index-anciennes-titre {
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.index-anciennes { padding-top: 28px; border-top: 1px solid var(--filet); }
+.index-anciennes-titre { color: var(--discret); margin-bottom: 36px; }
+.index-serie.ancienne h2 { text-transform: none; letter-spacing: 0; font-size: 12px; }
+.index-texte { max-width: 560px; margin: -8px 0 18px; font-size: 11.5px; line-height: 1.55; color: var(--discret); }
+.index-serie.ancienne ul { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 28px 20px; }
+.index-serie.ancienne .vignette { height: 100px; }
+.bouton-selection { display: block; margin-top: 10px; font-size: 11.5px; color: var(--discret); }
+.bouton-selection:hover { color: var(--texte); }
+.bouton-selection[hidden] { display: none; }
 .index-titre { display: block; margin-top: 8px; font-size: 11.5px; color: var(--discret); }
 .index-titre em { color: var(--texte); }
 .index button:hover .index-titre em { color: var(--discret); }
@@ -485,7 +503,7 @@ main {
     position: fixed;
     inset: 0;
     z-index: 9; /* sous la colonne (10) */
-    background: #fff url("../images/accueil/fresque-a.jpg") 50% 45% / cover no-repeat;
+    background: #fff url("../images/accueil/fresque-a.jpg") 50% 100% / cover no-repeat;
   }
   .menu-ouvert .colonne, .menu-ouvert .menu { background: transparent; }
   .menu-ouvert { --texte: #000; --discret: #000; --gris-nom: #000; }
@@ -506,6 +524,7 @@ main {
   .legende-mobile em { color: var(--texte); }
   .entrer { display: none; }
   .index { display: none; }
+  .diapo-hors, .bouton-selection { display: none !important; } /* téléphone : la sélection seulement */
 
   .expos { display: block; height: auto; }
   .expos-liste { padding: 16px var(--marge) 80px; overflow: visible; }
