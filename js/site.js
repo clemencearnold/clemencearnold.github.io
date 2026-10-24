@@ -151,9 +151,13 @@
     return "";
   }
 
+  // Bloc posé sur la photo d'accueil : l'exposition en cours ou à venir, puis le lien vers le portfolio
   function renderActualites() {
     const items = SITE.actualites.filter(statut);
-    if (!items.length) return "";
+    const portfolio = SITE.documents.portfolio
+      ? `<p class="actualites-portfolio"><a href="${esc(SITE.documents.portfolio)}" target="_blank" rel="noopener">${UI.portfolio}<span aria-hidden="true"> ↗</span></a></p>`
+      : "";
+    if (!items.length && !portfolio) return "";
     return `
       <section class="actualites">
         ${items
@@ -166,6 +170,7 @@
           </p>`
           )
           .join("")}
+        ${portfolio}
       </section>`;
   }
 
@@ -544,7 +549,7 @@
             <p>${esc(t(SITE.situation))}</p>
           </header>
           <p class="presentation">${esc(t(SITE.presentation))}</p>
-          <p class="bio-documents"><a href="${esc(SITE.documents.portfolio)}" target="_blank" rel="noopener">${UI.portfolio}<span class="fleche" aria-hidden="true"> ↗</span></a></p>
+
           ${rubrique(UI.formation, cv("formation"))}
           ${rubrique(UI.prix, cv("prix"))}
           ${rubrique(UI.residence, expos("residence"))}
