@@ -206,7 +206,7 @@
 
   // Les actualités se posent sur la photo d'accueil (ordinateur et téléphone), à gauche, juste au-dessus du sol.
   // La photo est recadrée par object-fit: cover : on convertit la hauteur du sol (en part de l'image) en pixels d'écran.
-  const ZONE_ACTUALITES = { droite: 0.775, gauche: 0.745 }; // nettement au-dessus de la ligne du sol (0,795)
+  const ZONE_ACTUALITES = { droite: 0.775, gauche: 0.779 }; // juste au-dessus de la ligne du sol (0,795), quelle que soit la taille de l'écran
   const SOL = 0.795;
   // Téléphone : le bloc se cale entre le bord gauche et la personne (dont le bras gauche est à ~50 % de la largeur de la photo),
   // sur le mur clair, au-dessus de la bande sombre (texte noir)

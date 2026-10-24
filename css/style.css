@@ -102,6 +102,8 @@ button:hover { color: var(--discret); }
 /* Ordinateur : Instagram et Vimeo en haut à droite, à côté de FR / EN ; le menu ne les répète pas */
 .reseaux-coin { flex-direction: row; gap: 12px; align-items: center; margin-right: 6px; }
 .reseaux-coin .icone { width: 14px; height: 14px; }
+.reseaux-coin a { color: var(--texte); } /* pictogrammes en noir, sur toutes les pages */
+.reseaux-coin a:hover { color: var(--discret); }
 .menu-secondaire { display: none; }
 .icone { display: block; width: 17px; height: 17px; }
 .icone svg { display: block; width: 100%; height: 100%; }
