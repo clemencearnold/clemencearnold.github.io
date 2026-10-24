@@ -98,6 +98,7 @@
     nav.innerHTML = `
       <a class="nom" href="${lien("index.html")}" aria-label="${esc(SITE.artiste)}">clémence arnold</a>
       <div class="coin">
+        <p class="reseaux reseaux-coin">${reseaux()}</p>
         <p class="langues">
           ${langue === "fr" ? '<span aria-current="true">FR</span>' : `<a href="${autre}" hreflang="fr" lang="fr">FR</a>`}
           /
@@ -108,7 +109,7 @@
       <nav id="menu" class="menu">
         <ul class="menu-rubriques">${liste(oeuvres)}</ul>
         <ul class="menu-rubriques menu-infos">${portfolio}${liste(infos)}</ul>
-        <ul class="menu-secondaire">
+        <ul class="menu-secondaire"><!-- pictogrammes : dans le menu sur téléphone seulement -->
           <li class="reseaux">${reseaux()}</li>
         </ul>
         ${expo ? `<div class="expo-info">${infoExpo(expo)}</div>` : ""}
@@ -205,7 +206,8 @@
 
   // Les actualités se posent sur la photo d'accueil (ordinateur et téléphone), à gauche, juste au-dessus du sol.
   // La photo est recadrée par object-fit: cover : on convertit la hauteur du sol (en part de l'image) en pixels d'écran.
-  const ZONE_ACTUALITES = { droite: 0.775, gauche: 0.772 }; // un peu au-dessus de la ligne du sol (0,795)
+  const ZONE_ACTUALITES = { droite: 0.775, gauche: 0.745 }; // nettement au-dessus de la ligne du sol (0,795)
+  const SOL = 0.795;
   // Téléphone : le bloc se cale entre le bord gauche et la personne (dont le bras gauche est à ~50 % de la largeur de la photo),
   // sur le mur clair, au-dessus de la bande sombre (texte noir)
   const TELEPHONE = { bas: 0.545, personne: 0.5 };
@@ -227,9 +229,16 @@
       bloc.style.removeProperty("max-width");
     }
     let y = y0 + bas * im.h * k; // bas du bloc, en pixels depuis le haut
-    // À gauche, le bloc ne doit jamais remonter jusqu'aux pictogrammes du menu
-    const icones = document.querySelector(".reseaux");
-    if (bloc.dataset.cote === "gauche" && icones) y = Math.max(y, icones.getBoundingClientRect().bottom + 24 + bloc.offsetHeight);
+    // Sous le menu, le bloc ne doit ni toucher les pictogrammes ni descendre sur le sol.
+    // S'il n'y a pas la place entre les deux (écran peu haut), il se décale à droite de la colonne du menu.
+    bloc.classList.remove("a-droite-du-menu");
+    const icones = document.querySelector(".menu-infos"); // dernier élément du menu au-dessus du bloc
+    if (!telephone && bloc.dataset.cote === "gauche" && icones) {
+      const minimum = icones.getBoundingClientRect().bottom + 20 + bloc.offsetHeight;
+      const sol = y0 + SOL * im.h * k - 12;
+      if (minimum > sol) bloc.classList.add("a-droite-du-menu");
+      else y = Math.max(y, minimum);
+    }
     bloc.style.bottom = `${Math.round(innerHeight - y)}px`;
   }
 

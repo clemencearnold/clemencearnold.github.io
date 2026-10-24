@@ -99,6 +99,10 @@ button:hover { color: var(--discret); }
 .menu-rubriques.menu-infos { margin-top: min(72px, 8vh); font-size: 10.5px; } /* 2e groupe : les informations */
 .menu-secondaire { margin-top: min(48px, 5.3vh); font-size: 12px; } /* écarts réduits sur les écrans bas */
 .reseaux { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; } /* pictogrammes l'un au-dessus de l'autre */
+/* Ordinateur : Instagram et Vimeo en haut à droite, à côté de FR / EN ; le menu ne les répète pas */
+.reseaux-coin { flex-direction: row; gap: 12px; align-items: center; margin-right: 6px; }
+.reseaux-coin .icone { width: 14px; height: 14px; }
+.menu-secondaire { display: none; }
 .icone { display: block; width: 17px; height: 17px; }
 .icone svg { display: block; width: 100%; height: 100%; }
 .menu li { margin-bottom: 4px; }
@@ -229,6 +233,7 @@ main {
   color: var(--actu-couleur, #db8447); /* couleur prise dans la fresque, propre à chaque version de la photo (data.js) */
   line-height: 1.35;
 }
+[data-page="accueil"] .actualites.a-droite-du-menu { left: var(--colonne); } /* écran peu haut : à côté du menu */
 [data-page="accueil"] .actualites[data-cote="gauche"] a,
 [data-page="accueil"] .actualites[data-cote="gauche"] .statut { color: var(--actu-couleur, #db8447); }
 [data-page="accueil"] .actualites[data-cote="gauche"] a:hover { color: #fff; }
@@ -483,7 +488,8 @@ main {
   .menu-ouvert .menu { display: flex; }
   .menu-rubriques { margin-top: 0; font-size: 15px; }
   .menu-rubriques.menu-infos { margin-top: 18px; }
-  .menu-secondaire { font-size: 15px; }
+  .menu-secondaire { display: block; font-size: 15px; } /* téléphone : pictogrammes dans le menu */
+  .reseaux-coin { display: none; }
   .menu li { margin-bottom: 4px; }
   /* Téléphone : les actualités restent sur la photo d'accueil (pas dans le menu), en noir, sur le mur clair */
   [data-page="accueil"] .actualites[data-cote="gauche"] { left: var(--marge); font-size: 10px; }
