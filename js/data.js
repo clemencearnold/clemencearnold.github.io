@@ -378,7 +378,6 @@ const SITE = {
         { src: "images/murales/a-bas-bruit-fresque/1.jpg", w: 2400, h: 1601, legende: "" },
         { src: "images/murales/a-bas-bruit-fresque/2.jpg", w: 2400, h: 1601, legende: "" },
         { src: "images/murales/a-bas-bruit-fresque/3.jpg", w: 2400, h: 1601, legende: "" },
-        { src: "images/murales/a-bas-bruit-fresque/4.jpg", w: 2400, h: 1601, legende: "" },
       ],
     },
     {
