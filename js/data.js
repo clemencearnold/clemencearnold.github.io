@@ -86,6 +86,8 @@ const SITE = {
   // l'eau et les baigneurs → la nuit et la végétation → la tempête et le feu → la mémoire → l'intime.
   // Les images sont recadrées au ras de la toile pour que toutes s'affichent à la même échelle.
   series: [
+    { nom: "À bas bruit" },
+    { nom: "Palmiers et tempêtes" },
     { nom: "Lost Eden" },
     { nom: "Abotts' Lilies" },
     { nom: "Vision nocturne" },
@@ -93,8 +95,6 @@ const SITE = {
     { nom: "En suspend" },
     { nom: "Ma mémoire floue" },
     { nom: "Super 8" },
-    { nom: "Palmiers et tempêtes" },
-    { nom: "À bas bruit" },
     { nom: "Short Film" },
     { nom: "" },
     { nom: "En jouant", ancienne: true, texte: { fr: "Cette série a été réalisée à partir d'une vidéo personnelle. J'opère une transformation de l'image en laissant libre cours à mon inconscient et en laissant la peinture prendre le dessus. Certains éléments disparaissent de l'image originale tandis que de nouveaux apparaissent et soudain l'atmosphère est changée.", en: "This series was made from a home video. I transform the image by giving free rein to my unconscious and letting the paint take over. Some elements of the original image disappear while new ones appear, and suddenly the atmosphere has changed." } },
