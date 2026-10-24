@@ -90,6 +90,7 @@ const SITE = {
     { nom: "Abotts' Lilies" },
     { nom: "Vision nocturne" },
     { nom: "Sous venir" },
+    { nom: "En suspend" },
     { nom: "Ma mémoire floue" },
     { nom: "Super 8" },
     { nom: "Palmiers et tempêtes" },
@@ -151,14 +152,14 @@ const SITE = {
     { src: "images/peintures/au-loin.jpg", w: 2400, h: 1787, titre: "Au loin", annee: "2023", technique: "Huile sur papier marouflé sur toile", dimensions: "23 × 31 cm", serie: "Lost Eden", hors: true },  // _A classer/Au loin_huile sur papier marouflée sur toile_23x31cm_2023_NON.jpg
     { src: "images/peintures/la-meute.jpg", w: 2400, h: 1853, titre: "La meute", annee: "2022", technique: "Huile sur toile", dimensions: "50 × 65 cm", serie: "Lost Eden", hors: true },  // _A classer/La meute_huile sur toile_50x65cm_2022_NON.jpg
     { src: "images/peintures/ouessant.jpg", w: 2400, h: 1808, titre: "Ouessant", annee: "2020", technique: "Huile sur papier marouflé sur toile", dimensions: "31 × 41 cm", serie: "", hors: true },  // _A classer/Ouessant_huile sur papier marouflée sur toile_31x41cm_2020_NON.jpg
-    { src: "images/peintures/dans-les-arbres-i.jpg", w: 2179, h: 1658, titre: "Dans les arbres I", annee: "", technique: "", dimensions: "", serie: "Sous venir" },  // Sous venir/Dans les arbres I.jpg — À COMPLÉTER
-    { src: "images/peintures/dans-les-arbres-ii.jpg", w: 2400, h: 1850, titre: "Dans les arbres II", annee: "", technique: "", dimensions: "", serie: "Sous venir" },  // Sous venir/Dans les arbres II.jpg — À COMPLÉTER
-    { src: "images/peintures/je-ne-me-souviens-pas-i.jpg", w: 2400, h: 1776, titre: "Je ne me souviens pas I", annee: "", technique: "", dimensions: "", serie: "Sous venir" },  // Sous venir/Je ne me souviens pas I.jpg — À COMPLÉTER
-    { src: "images/peintures/je-ne-me-souviens-pas-ii.jpg", w: 2392, h: 2398, titre: "Je ne me souviens pas II", annee: "", technique: "", dimensions: "", serie: "Sous venir" },  // Sous venir/Je ne me souviens pas II.jpg — À COMPLÉTER
-    { src: "images/peintures/silhouettes-ii.jpg", w: 2400, h: 1830, titre: "Silhouettes II", annee: "", technique: "", dimensions: "", serie: "Sous venir" },  // Sous venir/Silhouettes2.jpg — À COMPLÉTER
-    { src: "images/peintures/en-suspend-i.jpg", w: 2400, h: 1798, titre: "En suspend I", annee: "", technique: "", dimensions: "", serie: "Sous venir" },  // Sous venir/En suspend1.jpg — À COMPLÉTER
-    { src: "images/peintures/en-suspend-ii.jpg", w: 2400, h: 1780, titre: "En suspend II", annee: "", technique: "", dimensions: "", serie: "Sous venir" },  // Sous venir/En suspend2.jpg — À COMPLÉTER
-    { src: "images/peintures/en-suspend-iii.jpg", w: 2400, h: 1773, titre: "En suspend III", annee: "", technique: "", dimensions: "", serie: "Sous venir" },  // Sous venir/En suspend3.jpg — À COMPLÉTER
+    { src: "images/peintures/dans-les-arbres-i.jpg", w: 2179, h: 1658, titre: "Dans les arbres I", annee: "2017", technique: "Huile sur papier", dimensions: "98 × 130 cm", serie: "Sous venir", hors: true },  // Sous venir/Dans les arbres I_huile sur papier_98x130cm_2017_NON.jpg
+    { src: "images/peintures/dans-les-arbres-ii.jpg", w: 2400, h: 1850, titre: "Dans les arbres II", annee: "2017", technique: "Huile sur papier", dimensions: "98 × 130 cm", serie: "Sous venir", hors: true },  // Sous venir/Dans les arbres II_huile sur papier_98x130cm_2017_NON.jpg
+    { src: "images/peintures/je-ne-me-souviens-pas-i.jpg", w: 2400, h: 1776, titre: "Je ne me souviens pas I", annee: "2016", technique: "Huile sur papier", dimensions: "91 × 123 cm", serie: "Sous venir", hors: true },  // Sous venir/Je ne me souviens pas I_huile sur papier_91x123cm_2016_NON.jpg
+    { src: "images/peintures/je-ne-me-souviens-pas-ii.jpg", w: 2392, h: 2398, titre: "Je ne me souviens pas II", annee: "2016", technique: "Huile sur papier", dimensions: "122 × 122 cm", serie: "Sous venir", hors: true },  // Sous venir/Je ne me souviens pas II_huile sur papier_122x122cm_2016_NON.jpg
+    { src: "images/peintures/silhouettes-ii.jpg", w: 2400, h: 1830, titre: "Silhouettes II", annee: "2017", technique: "Huile sur papier", dimensions: "100 × 130 cm", serie: "Sous venir", hors: true },  // Sous venir/Silhouettes2_huile sur papier_100x130cm_2017_NON.jpg
+    { src: "images/peintures/en-suspend-i.jpg", w: 2400, h: 1798, titre: "En suspend I", annee: "2017", technique: "Huile sur papier", dimensions: "75 × 100 cm", serie: "En suspend", hors: true },  // Sous venir/En suspend1_huile sur papier_75x100cm_2017_NON.jpg
+    { src: "images/peintures/en-suspend-ii.jpg", w: 2400, h: 1780, titre: "En suspend II", annee: "2017", technique: "Huile sur papier", dimensions: "75 × 100 cm", serie: "En suspend", hors: true },  // Sous venir/En suspend2_huile sur papier_75x100cm_2017_NON.jpg
+    { src: "images/peintures/en-suspend-iii.jpg", w: 2400, h: 1773, titre: "En suspend III", annee: "2017", technique: "Huile sur papier", dimensions: "75 × 100 cm", serie: "En suspend", hors: true },  // Sous venir/En suspend3_huile sur papier_75x100cm_2017_NON.jpg
     { src: "images/peintures/ma-memoire-floue-i.jpg", w: 2400, h: 1756, titre: "Ma mémoire floue I", annee: "2018", technique: "Huile sur toile", dimensions: "24 × 33 cm", serie: "Ma mémoire floue", collection: true },  // Ma mémoire floue/Ma mémoire floue I_huile sur toile_24x33cm_2018_CP.jpg
     { src: "images/peintures/ma-memoire-floue-ii.jpg", w: 2400, h: 1751, titre: "Ma mémoire floue II", annee: "2018", technique: "Huile sur toile", dimensions: "24 × 33 cm", serie: "Ma mémoire floue" },  // Ma mémoire floue/Ma mémoire floue II_huile sur toile_24x33cm_2018.jpg
     { src: "images/peintures/ma-memoire-floue-iii.jpg", w: 2400, h: 1759, titre: "Ma mémoire floue III", annee: "2018", technique: "Huile sur toile", dimensions: "24 × 33 cm", serie: "Ma mémoire floue", hors: true },  // Ma mémoire floue/Ma mémoire floue III_huile sur toile_24x33cm_2018_NON.jpg
