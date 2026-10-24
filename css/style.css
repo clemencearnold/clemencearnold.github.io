@@ -329,20 +329,24 @@ main {
   z-index: 5;
   animation: apparition 0.4s ease both;
 }
+/* Index en flux : toutes les vignettes à la même hauteur, chacune à sa largeur naturelle (--r = largeur / hauteur) */
+.index { --haut-vignette: 150px; }
 .index ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 40px 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 34px 22px;
 }
+.index li { width: calc(var(--haut-vignette) * var(--r)); min-width: 70px; }
 .index button { display: block; width: 100%; text-align: left; }
 .vignette {
   display: flex;
   gap: 2px;
-  height: 150px;
+  height: var(--haut-vignette);
   align-items: flex-end;
 }
 .vignette img { min-width: 0; max-width: 100%; max-height: 100%; object-fit: contain; object-position: left bottom; }
-.vignette img:only-child { width: auto; }
+.vignette img:only-child { width: 100%; height: 100%; object-fit: cover; }
 .vignette img:not(:only-child) { flex: 1 1 0; width: 0; height: auto; }
 /* Index par séries : un titre par série ; les séries antérieures en dessous, en plus petit */
 .index-serie + .index-serie, .index-anciennes { margin-top: 56px; }
@@ -357,8 +361,7 @@ main {
 .index-anciennes-titre { color: var(--discret); margin-bottom: 36px; }
 .index-serie.ancienne h2 { text-transform: none; letter-spacing: 0; font-size: 12px; }
 .index-texte { max-width: 560px; margin: -8px 0 18px; font-size: 11.5px; line-height: 1.55; color: var(--discret); }
-.index-serie.ancienne ul { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 28px 20px; }
-.index-serie.ancienne .vignette { height: 100px; }
+.index-serie.ancienne { --haut-vignette: 100px; }
 .bouton-selection { display: block; margin-top: 10px; font-size: 11.5px; color: var(--discret); }
 .bouton-selection:hover { color: var(--texte); }
 .bouton-selection[hidden] { display: none; }
@@ -557,8 +560,8 @@ main {
   .serie-mobile-nom { text-transform: uppercase; letter-spacing: 0.06em; }
   .retour-mobile { font-size: 12px; color: var(--discret); }
   .index { inset: 58px 0 0 0; padding: 52px var(--marge) 60px; z-index: 9; } /* sous la barre « Fermer » */
-  .index ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 16px; }
-  .vignette { height: 120px; }
+  .index { --haut-vignette: 104px; }
+  .index ul { gap: 24px 14px; }
   .index-serie + .index-serie { margin-top: 40px; }
   .bouton-selection { display: none !important; }
   /* La sélection par défaut ; une série (avec ses œuvres hors sélection) quand on l'ouvre depuis l'index */

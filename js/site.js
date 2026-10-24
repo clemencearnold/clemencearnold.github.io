@@ -339,7 +339,7 @@
           <ul>${liste
             .map(
               (o) => `
-            <li><button data-n="${rang.get(o)}">
+            <li style="--r:${(o.w && o.h ? o.w / o.h : 16 / 9).toFixed(3)}"><button data-n="${rang.get(o)}">
               <span class="vignette">${o.vignette ? `<img src="${esc(o.vignette)}" loading="lazy" alt="">` : (o.panneaux || [o]).map((p) => `<img src="${esc(vignette(p.src))}" loading="lazy" alt="">`).join("")}</span>
               <span class="index-titre"><em>${esc(o.titre)}</em>${o.annee ? ", " + esc(o.annee) : ""}</span>
             </button></li>`
