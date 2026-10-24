@@ -50,6 +50,8 @@
 
   const esc = (s) =>
     String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  // Flèche « lien externe » dessinée (le caractère ↗ s'affiche en émoji coloré sur iPhone)
+  const flecheExterne = `<svg class="fleche-externe" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.8 2.5h3.7v3.7" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square"/></svg>`;
   const vignette = (src) => src.replace(/^images\//, "images/vignettes/");
   const lignes = (arr) => arr.filter(Boolean).join("<br>");
   const paragraphes = (v) => (t(v) || []).map((p) => `<p>${esc(p)}</p>`).join("");
@@ -86,7 +88,7 @@
     ];
     // Le portfolio (PDF) ouvre le 2e bloc du menu, au-dessus d'Expositions, sur toutes les pages
     const portfolio = SITE.documents.portfolio
-      ? `<li class="menu-portfolio"><a href="${esc(SITE.documents.portfolio)}" target="_blank" rel="noopener">${UI.portfolioMenu}<span aria-hidden="true"> ↗</span></a></li>`
+      ? `<li class="menu-portfolio"><a href="${esc(SITE.documents.portfolio)}" target="_blank" rel="noopener">${UI.portfolioMenu}${flecheExterne}</a></li>`
       : "";
     const liste = (rubriques) =>
       rubriques.map(([href, label, id]) => `<li><a href="${lien(href)}"${page === id ? ' aria-current="page"' : ""}>${label}</a></li>`).join("");
@@ -564,7 +566,7 @@
     const presse = SITE.presse.map((a) => {
       const texte = [a.media, a.titre, a.auteur, t(a.date)].filter(Boolean).map(esc).join(" / ");
       return a.lien
-        ? `<li><a class="article" href="${esc(a.lien)}" target="_blank" rel="noopener">${texte}<span class="fleche" aria-hidden="true"> ↗</span></a></li>`
+        ? `<li><a class="article" href="${esc(a.lien)}" target="_blank" rel="noopener">${texte}${flecheExterne}</a></li>`
         : `<li><span class="article">${texte}</span></li>`;
     });
 

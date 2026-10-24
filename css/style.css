@@ -430,6 +430,7 @@ main {
 .liste-presse li { margin-bottom: 1px; line-height: 1.45; }
 .article { display: block; }
 .fleche { color: var(--discret); }
+.fleche-externe { display: inline-block; width: 0.62em; height: 0.62em; margin-left: 0.4em; vertical-align: 0.04em; overflow: visible; }
 /* Lignes du CV et de la presse en gris, comme les dates ; les liens foncent au survol */
 .page-bio .liste, .page-bio .liste-presse { color: var(--discret); }
 .page-bio .liste a:hover, a.article:hover, a.article:hover .fleche { color: var(--texte); }
