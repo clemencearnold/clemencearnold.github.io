@@ -22,7 +22,7 @@
       expoSuivante: "Exposition suivante", toutesExpos: "Toutes les expositions",
       personnelle: "Expositions personnelles", collective: "Expositions collectives", residence: "Résidences",
       formation: "Formation", prix: "Prix", projets: "Projets dans l'espace public", presse: "Presse",
-      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio",
+      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio", livret: "Livret de l'exposition (PDF)",
       mois: ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
     },
     en: {
@@ -35,7 +35,7 @@
       expoSuivante: "Next exhibition", toutesExpos: "All exhibitions",
       personnelle: "Solo exhibitions", collective: "Group exhibitions", residence: "Residencies",
       formation: "Education", prix: "Awards", projets: "Public projects", presse: "Press",
-      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio",
+      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio", livret: "Exhibition booklet (PDF, in French)",
       mois: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     },
   }[langue];
@@ -525,6 +525,7 @@
     return `
       <h1>${titreExpo(e)}</h1>
       <p class="discret">${lignes([esc(t(type)), e.titre && esc(t(e.lieu)), esc(t(e.dates) || e.annee)])}</p>
+      ${e.livret ? `<p class="expo-livret"><a href="${esc(e.livret)}" download>${UI.livret}<svg class="fleche-externe fleche-bas" viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1.5v7M2 5.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1"/></svg></a></p>` : ""}
       ${t(e.texte) ? `<p>${esc(t(e.texte))}</p>` : ""}`;
   }
 

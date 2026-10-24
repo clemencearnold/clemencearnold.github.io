@@ -208,6 +208,7 @@ const SITE = {
       annee: "2026",
       titre: "À bas bruit",
       lieu: "Centre culturel de La Visitation, Périgueux",
+      livret: "documents/livret-a-bas-bruit-2026.pdf", // livret de l'exposition, à télécharger
       dates: { fr: "11 septembre – 14 novembre 2026", en: "11 September – 14 November 2026" },
       texte: {
         fr: "Lauréate de l'appel à projets national de la Ville de Périgueux, Clémence Arnold investit deux espaces qui dialoguent entre eux. Dans la chapelle, une douzaine d'huiles sur bois et une toile grand format réalisées pour l'occasion se déploient autour d'une peinture murale réalisée in situ : des images de basculement, de débordement et de disparition, volontairement ouvertes à l'interprétation. La salle d'exposition rassemble des toiles plus anciennes où affleurent déjà la mémoire, la menace et le pressentiment d'un événement latent.",
