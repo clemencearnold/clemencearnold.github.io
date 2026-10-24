@@ -76,7 +76,7 @@ const SITE = {
     { src: "images/dessins/jonas-6.jpg", w: 1860, h: 1263, titre: "Jonas 6", annee: "2023", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Jonas" },  // Jonas 6_Fusain sur papier_21x29cm_2023.jpg
     { src: "images/dessins/jonas-7.jpg", w: 1869, h: 1282, titre: "Jonas 7", annee: "", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Jonas" },  // FusainJonasX.jpg — À COMPLÉTER
     { src: "images/dessins/woods-i.jpg", w: 2400, h: 1677, titre: "Woods I", annee: "", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "" },  // Woods1.jpg — À COMPLÉTER
-    { src: "images/dessins/pierre-et-jean-fusain.jpg", w: 1688, h: 2400, titre: "Pierre et Jean", annee: "2023", technique: "Fusain sur papier", dimensions: "29 × 21 cm", serie: "Lost Eden" },  // Pierre et Jean_Fusain sur papier_29x21cm_2023.jpg
+    { src: "images/dessins/pierre-et-jean-fusain.jpg", w: 1690, h: 2400, titre: "Pierre et Jean", annee: "2023", technique: "Fusain sur papier", dimensions: "29 × 21 cm", serie: "Lost Eden" },  // Pierre et Jean_Fusain sur papier_29x21cm_2023.jpg
     { src: "images/dessins/algorithme-i-fusain.jpg", w: 2246, h: 1552, titre: "Algorithme I", annee: "", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Algorithmes" },  // FusainAlgo1.jpg — À COMPLÉTER
     { src: "images/dessins/algorithme-ii-fusain.jpg", w: 2211, h: 1544, titre: "Algorithme II", annee: "", technique: "Fusain sur papier", dimensions: "21 × 29 cm", serie: "Algorithmes" },  // FusainAlgo2.jpg — À COMPLÉTER
   ],
@@ -101,10 +101,14 @@ const SITE = {
     { src: "images/peintures/a-bas-bruit-v.jpg", w: 2152, h: 1912, titre: "À bas bruit V", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit V_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-vi.jpg", w: 1965, h: 1749, titre: "À bas bruit VI", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit VI_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-vii.jpg", w: 2277, h: 2049, titre: "À bas bruit VII", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit VII_huile sur bois_25x28cm_2026.jpg
+    { src: "images/peintures/a-bas-bruit-i.jpg", w: 2238, h: 1964, titre: "À bas bruit I", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit I_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-ii.jpg", w: 2400, h: 2119, titre: "À bas bruit II", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit II_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-iii.jpg", w: 2400, h: 2136, titre: "À bas bruit III", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit III_huile sur bois_25x28cm_2026.jpg
+    { src: "images/peintures/a-bas-bruit-iv.jpg", w: 2291, h: 2046, titre: "À bas bruit IV", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit IV_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-viii.jpg", w: 2400, h: 2125, titre: "À bas bruit VIII", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit VIII_huile sur bois_25x28cm_2026.jpg
     { src: "images/peintures/a-bas-bruit-x.jpg", w: 1869, h: 1650, titre: "À bas bruit X", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit" },  // A bas bruit/A bas bruit X_huile sur bois_25x28cm_2026.jpg
+    { src: "images/peintures/a-bas-bruit-xi.jpg", w: 1991, h: 1779, titre: "À bas bruit XI", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit", hors: true },  // A bas bruit/A bas bruit XI_huile sur bois_25x28cm_2026_NON.jpg
+    { src: "images/peintures/a-bas-bruit-xii.jpg", w: 2400, h: 2109, titre: "À bas bruit XII", annee: "2026", technique: "Huile sur bois", dimensions: "25 × 28 cm", serie: "À bas bruit", hors: true },  // A bas bruit/A bas bruit XII_huile sur bois_25x28cm_2026_NON.jpg
     { src: "images/peintures/feu.jpg", w: 2400, h: 1917, titre: "Feu", annee: "2025", technique: "Huile sur toile", dimensions: "40 × 50 cm", serie: "Bruit de fond" },  // Palmiers et tempêtes/Feu_huile sur toile_40x50cm_2025.jpg
     { src: "images/peintures/bruit-de-fond.jpg", w: 2400, h: 1917, titre: "Bruit de fond", annee: "2025", technique: "Huile sur toile", dimensions: "40 × 50 cm", serie: "Bruit de fond" },  // Palmiers et tempêtes/Bruit de fond_huile sur toile_40x50cm_2025.jpg
     { src: "images/peintures/le-bruit-du-silence-i.jpg", w: 1761, h: 2400, titre: "Le bruit du silence I", annee: "2025", technique: "Huile sur toile", dimensions: "33 × 24 cm", serie: "Bruit de fond", collection: true },  // Palmiers et tempêtes/Le bruit du silence I_huile sur toile_33x24cm_2025_CP.jpg
@@ -226,12 +230,11 @@ const SITE = {
     {
       id: "bouchor-2023", type: "personnelle", annee: "2023", titre: "", lieu: "Espace Bouchor, Paris",
       vues: [
-        { src: "images/expositions/bouchor-2023/1.jpg", w: 2400, h: 1600, legende: "" },
+        { src: "images/expositions/bouchor-2023/1.jpg", w: 2400, h: 1675, legende: "" },
         { src: "images/expositions/bouchor-2023/2.jpg", w: 2400, h: 1600, legende: "" },
         { src: "images/expositions/bouchor-2023/3.jpg", w: 2400, h: 1600, legende: "" },
-        { src: "images/expositions/bouchor-2023/4.jpg", w: 2400, h: 1600, legende: "" },
+        { src: "images/expositions/bouchor-2023/4.jpg", w: 2400, h: 1599, legende: "" },
         { src: "images/expositions/bouchor-2023/5.jpg", w: 2400, h: 1600, legende: "" },
-        { src: "images/expositions/bouchor-2023/6.jpg", w: 2400, h: 1600, legende: "" },
       ],
     },
 
@@ -246,8 +249,8 @@ const SITE = {
       id: "in-situ-2023", type: "collective", annee: "2023", titre: "IN SITU", lieu: "Espace Art et Liberté, Charenton-le-Pont",
       vues: [
         { src: "images/expositions/in-situ-2023/1.jpg", w: 2400, h: 1800, legende: "" },
-        { src: "images/expositions/in-situ-2023/2.jpg", w: 1800, h: 2400, legende: "" },
-        { src: "images/expositions/in-situ-2023/3.jpg", w: 2400, h: 1800, legende: "" },
+        { src: "images/expositions/in-situ-2023/2.jpg", w: 1691, h: 2400, legende: "" },
+        { src: "images/expositions/in-situ-2023/3.jpg", w: 2400, h: 1772, legende: "" },
       ],
     },
     {
@@ -261,22 +264,31 @@ const SITE = {
     },
     {
       id: "beaurepaire-2021", type: "collective", annee: "2021", titre: "Prix de l'Espace Beaurepaire", lieu: "Espace Beaurepaire, Paris",
-      // vues : pas en ligne pour le moment (photos à refaire)
+      vues: [
+        { src: "images/expositions/beaurepaire-2021/1.jpg", w: 844, h: 673, legende: "" },
+        { src: "images/expositions/beaurepaire-2021/2.jpg", w: 778, h: 601, legende: "" },
+      ],
     },
-    // Vie d'Artiste 2019 : pas de vues (aucune photo satisfaisante)
-    { type: "collective", annee: "2019", titre: "Vie d'Artiste", lieu: "Espace Beaurepaire, Paris" },
+    {
+      id: "vie-d-artiste-2019", type: "collective", annee: "2019", titre: "Vie d'Artiste", lieu: "Espace Beaurepaire, Paris",
+      vues: [
+        { src: "images/expositions/vie-d-artiste-2019/1.jpg", w: 2400, h: 1314, legende: "" },
+        { src: "images/expositions/vie-d-artiste-2019/2.jpg", w: 2400, h: 1472, legende: "" },
+        { src: "images/expositions/vie-d-artiste-2019/3.jpg", w: 2400, h: 1800, legende: "" },
+      ],
+    },
     { type: "collective", annee: "2019", titre: "87e salon de la Société artistique d'Étampes", lieu: "Étampes" },
     {
       id: "mons-2019", type: "collective", annee: "2019", titre: "De la forêt à moi", lieu: { fr: "Biennale de Mons, Beaux-Arts de Mons, Belgique", en: "Mons Biennial, Beaux-Arts de Mons, Belgium" },
       vues: [
-        { src: "images/expositions/mons-2019/1.jpg", w: 2400, h: 1800, legende: "" },
+        { src: "images/expositions/mons-2019/1.jpg", w: 2400, h: 1739, legende: "" },
         { src: "images/expositions/mons-2019/2.jpg", w: 2304, h: 1536, legende: "" },
       ],
     },
     {
       id: "p-retro-2019", type: "collective", annee: "2019", titre: "P:Rétro", lieu: { fr: "Centre culturel coréen, Paris", en: "Korean Cultural Centre, Paris" },
       vues: [
-        { src: "images/expositions/p-retro-2019/1.jpg", w: 2400, h: 1600, legende: "" },
+        { src: "images/expositions/p-retro-2019/1.jpg", w: 2400, h: 1596, legende: "" },
         { src: "images/expositions/p-retro-2019/2.jpg", w: 2400, h: 1889, legende: "" },
         { src: "images/expositions/p-retro-2019/3.jpg", w: 2400, h: 1600, legende: "" },
         { src: "images/expositions/p-retro-2019/4.jpg", w: 1600, h: 2400, legende: "" },
