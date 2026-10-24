@@ -22,7 +22,7 @@
       expoSuivante: "Exposition suivante", toutesExpos: "Toutes les expositions",
       personnelle: "Expositions personnelles", collective: "Expositions collectives", residence: "Résidences",
       formation: "Formation", prix: "Prix", projets: "Projets dans l'espace public", presse: "Presse",
-      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio", livret: "Livret de l'exposition (PDF)",
+      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio", livret: "Livret de l'exposition (PDF)", videosSerie: "Vidéos",
       mois: ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
     },
     en: {
@@ -35,7 +35,7 @@
       expoSuivante: "Next exhibition", toutesExpos: "All exhibitions",
       personnelle: "Solo exhibitions", collective: "Group exhibitions", residence: "Residencies",
       formation: "Education", prix: "Awards", projets: "Public projects", presse: "Press",
-      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio", livret: "Exhibition booklet (PDF, in French)",
+      portfolio: "Portfolio (PDF)", portfolioMenu: "Portfolio", livret: "Exhibition booklet (PDF, in French)", videosSerie: "Videos",
       mois: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     },
   }[langue];
@@ -123,7 +123,7 @@
             <button class="suiv" aria-label="${UI.suivante}">→</button>
             <span class="compteur"></span>
           </p>
-          ${["paintings", "drawings"].includes(page) ? `<p class="cartel-index"><button class="bouton-index" aria-expanded="false"><span class="icone-grille" aria-hidden="true"></span><span class="libelle">${UI.index}</span></button><button class="bouton-selection" hidden>← ${UI.selection}</button></p>` : ""}
+          ${["paintings", "drawings", "videos"].includes(page) ? `<p class="cartel-index"><button class="bouton-index" aria-expanded="false"><span class="icone-grille" aria-hidden="true"></span><span class="libelle">${UI.index}</span></button><button class="bouton-selection" hidden>← ${UI.selection}</button></p>` : ""}
         </div>` : ""}
       </nav>`;
 
@@ -325,10 +325,10 @@
     const rang = new Map(ordre.map((o, n) => [o, n]));
     const selection = ordre.map((o, n) => (o.hors ? -1 : n)).filter((n) => n >= 0);
     const diapos = ordre.map((o) => ({
-      html: media(o, o.titre),
-      legende: legendePeinture(o),
+      html: o.html || media(o, o.titre),
+      legende: o.legende || legendePeinture(o),
       compte: !o.hors,
-      classe: [o.centrer && "diapo-centree", o.hors && "diapo-hors"].filter(Boolean).join(" "),
+      classe: [o.classe, o.centrer && "diapo-centree", o.hors && "diapo-hors"].filter(Boolean).join(" "),
     }));
 
     // Groupes de l'index : une section par série (dans l'ordre de SITE.series), sinon une seule liste
@@ -340,7 +340,7 @@
             .map(
               (o) => `
             <li><button data-n="${rang.get(o)}">
-              <span class="vignette">${(o.panneaux || [o]).map((p) => `<img src="${esc(vignette(p.src))}" loading="lazy" alt="">`).join("")}</span>
+              <span class="vignette">${o.vignette ? `<img src="${esc(o.vignette)}" loading="lazy" alt="">` : (o.panneaux || [o]).map((p) => `<img src="${esc(vignette(p.src))}" loading="lazy" alt="">`).join("")}</span>
               <span class="index-titre"><em>${esc(o.titre)}</em>${o.annee ? ", " + esc(o.annee) : ""}</span>
             </button></li>`
             )
@@ -458,16 +458,21 @@
   /* ---------- Vidéos ---------- */
 
   function renderVideos() {
-    const diapos = SITE.videos.map((v) => ({
-      // Vidéo : preload="none", rien n'est téléchargé tant qu'on n'appuie pas sur lecture
-      html: v.image
-        ? media(v.image, v.titre)
-        : `<video class="video" src="${esc(v.src)}" poster="${esc(v.poster)}" controls preload="none" playsinline></video>`,
-      legende: lignes([`<em>${esc(v.titre)}</em>`, esc(t(v.technique)), esc(v.duree || dimensions(v.dimensions)), esc(v.annee)]),
-      compte: true,
-      classe: v.image ? "" : "diapo-video", // les vidéos s'alignent sur la 1re ligne du menu
-    }));
-    diaporama(diapos, { boucle: true });
+    const legende = (o) => lignes([`<em>${esc(o.titre)}</em>`, esc(t(o.technique)), esc(o.duree || dimensions(o.dimensions)), esc(o.annee)]);
+    const elements = [
+      ...SITE.videos.map((v) =>
+        v.image
+          ? { ...v.image, titre: v.titre, annee: v.annee, technique: v.technique, dimensions: v.dimensions, serie: "Algorithmes", legende: legende(v) }
+          : {
+              // Vidéo : preload="none", rien n'est téléchargé tant qu'on n'appuie pas sur lecture
+              html: `<video class="video" src="${esc(v.src)}" poster="${esc(v.poster)}" controls preload="none" playsinline></video>`,
+              classe: "diapo-video", // les vidéos se centrent dans la page
+              vignette: v.poster, titre: v.titre, annee: v.annee, serie: UI.videosSerie, legende: legende(v),
+            }
+      ),
+      ...(SITE.algorithmes || []).map((a) => ({ ...a, serie: "Algorithmes", legende: legende({ ...a, technique: { fr: "Image numérique", en: "Digital image" } }) })),
+    ];
+    renderPaintings(elements, [{ nom: UI.videosSerie }, { nom: "Algorithmes" }]);
   }
 
   /* ---------- Expositions ---------- */
