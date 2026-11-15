@@ -249,7 +249,7 @@ const SITE = {
       vues: [
         { src: "images/expositions/fiap-2026/1.jpg", w: 2400, h: 1800, legende: "" },
         { src: "images/expositions/fiap-2026/2.jpg", w: 2400, h: 1800, legende: "" },
-        { src: "images/expositions/fiap-2026/3.jpg", w: 1600, h: 2400, legende: "" },
+        { src: "images/expositions/fiap-2026/3.jpg", w: 1600, h: 2400, legende: "", credit: "© Junseok Mo" },
       ],
     },
     {
