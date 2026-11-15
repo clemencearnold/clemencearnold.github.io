@@ -231,11 +231,11 @@ const SITE = {
     {
       id: "bouchor-2023", type: "personnelle", annee: "2023", titre: "", lieu: "Espace Bouchor, Paris",
       vues: [
-        { src: "images/expositions/bouchor-2023/1.jpg", w: 2400, h: 1675, legende: "" },
-        { src: "images/expositions/bouchor-2023/2.jpg", w: 2400, h: 1600, legende: "" },
-        { src: "images/expositions/bouchor-2023/3.jpg", w: 2400, h: 1600, legende: "" },
-        { src: "images/expositions/bouchor-2023/4.jpg", w: 2400, h: 1599, legende: "" },
-        { src: "images/expositions/bouchor-2023/5.jpg", w: 2400, h: 1600, legende: "" },
+        { src: "images/expositions/bouchor-2023/1.jpg?v=47c44ccc", w: 2400, h: 1675, legende: "" },
+        { src: "images/expositions/bouchor-2023/2.jpg?v=c06e0b03", w: 2400, h: 1600, legende: "" },
+        { src: "images/expositions/bouchor-2023/3.jpg?v=697d9313", w: 2400, h: 1600, legende: "" },
+        { src: "images/expositions/bouchor-2023/4.jpg?v=1c73a113", w: 2400, h: 1599, legende: "" },
+        { src: "images/expositions/bouchor-2023/5.jpg?v=5e42e49a", w: 2400, h: 1600, legende: "" },
       ],
     },
 
@@ -247,33 +247,32 @@ const SITE = {
         en: "Group exhibition of the Association of Young Korean Artists (AJAC), 16th edition of Regards croisés, held for the 140th anniversary of diplomatic relations between France and Korea. Curator: Junseok Mo.",
       },
       vues: [
-        { src: "images/expositions/fiap-2026/1.jpg", w: 2400, h: 1998, legende: "" },
-        { src: "images/expositions/fiap-2026/2.jpg", w: 2400, h: 1800, legende: "" },
-        { src: "images/expositions/fiap-2026/3.jpg", w: 1600, h: 2400, legende: "", credit: "© Junseok Mo" },
+        { src: "images/expositions/fiap-2026/1.jpg?v=b3d5c7b8", w: 2400, h: 1800, legende: "" },
+        { src: "images/expositions/fiap-2026/2.jpg?v=18136866", w: 1600, h: 2400, legende: "", credit: "© Junseok Mo" },
       ],
     },
     {
       id: "montparnasse-2024", type: "collective", annee: "2024", titre: "Ce qui est vivant tend à disparaître", lieu: "Galerie du Montparnasse, Paris",
       vues: [
-        { src: "images/expositions/montparnasse-2024/1.jpg", w: 2400, h: 1600, legende: "" },
-        { src: "images/expositions/montparnasse-2024/2.jpg", w: 2400, h: 1600, legende: "" },
+        { src: "images/expositions/montparnasse-2024/1.jpg?v=28b2d1b8", w: 2400, h: 1600, legende: "" },
+        { src: "images/expositions/montparnasse-2024/2.jpg?v=c2562099", w: 2400, h: 1600, legende: "" },
       ],
     },
     {
       id: "in-situ-2023", type: "collective", annee: "2023", titre: "IN SITU", lieu: "Espace Art et Liberté, Charenton-le-Pont",
       vues: [
-        { src: "images/expositions/in-situ-2023/1.jpg", w: 2400, h: 1800, legende: "" },
-        { src: "images/expositions/in-situ-2023/2.jpg", w: 1691, h: 2400, legende: "" },
-        { src: "images/expositions/in-situ-2023/3.jpg", w: 2400, h: 1772, legende: "" },
+        { src: "images/expositions/in-situ-2023/1.jpg?v=1111f559", w: 2400, h: 1800, legende: "" },
+        { src: "images/expositions/in-situ-2023/2.jpg?v=7af76f02", w: 1691, h: 2400, legende: "" },
+        { src: "images/expositions/in-situ-2023/3.jpg?v=c2f0a7de", w: 2400, h: 1772, legende: "" },
       ],
     },
     {
       id: "montparnasse-2022", type: "collective", annee: "2022", titre: "", lieu: "Galerie du Montparnasse, Paris",
       vues: [
-        { src: "images/expositions/montparnasse-2022/1.jpg", w: 2400, h: 1600, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Collectif Le Réseau" },
-        { src: "images/expositions/montparnasse-2022/2.jpg", w: 2048, h: 1368, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Ludovic Marquier" },
-        { src: "images/expositions/montparnasse-2022/3.jpg", w: 2048, h: 1368, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Ludovic Marquier" },
-        { src: "images/expositions/montparnasse-2022/4.jpg", w: 2048, h: 1152, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Ludovic Marquier" },
+        { src: "images/expositions/montparnasse-2022/1.jpg?v=c9f32d61", w: 2400, h: 1600, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Collectif Le Réseau" },
+        { src: "images/expositions/montparnasse-2022/2.jpg?v=5534d288", w: 2048, h: 1368, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Ludovic Marquier" },
+        { src: "images/expositions/montparnasse-2022/3.jpg?v=6118df6a", w: 2048, h: 1368, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Ludovic Marquier" },
+        { src: "images/expositions/montparnasse-2022/4.jpg?v=db971ae2", w: 2048, h: 1152, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Ludovic Marquier" },
       ],
     },
     { type: "collective", annee: "2021", titre: "Prix de l'Espace Beaurepaire", lieu: "Espace Beaurepaire, Paris" },
@@ -282,32 +281,32 @@ const SITE = {
     {
       id: "mons-2019", type: "collective", annee: "2019", titre: "De la forêt à moi", lieu: { fr: "Biennale de Mons, Beaux-Arts de Mons, Belgique", en: "Mons Biennial, Beaux-Arts de Mons, Belgium" },
       vues: [
-        { src: "images/expositions/mons-2019/1.jpg", w: 2400, h: 1739, legende: "" },
-        { src: "images/expositions/mons-2019/2.jpg", w: 2304, h: 1536, legende: "" },
+        { src: "images/expositions/mons-2019/1.jpg?v=df59e134", w: 2400, h: 1739, legende: "" },
+        { src: "images/expositions/mons-2019/2.jpg?v=f7d7ac1c", w: 2304, h: 1536, legende: "" },
       ],
     },
     {
       id: "p-retro-2019", type: "collective", annee: "2019", titre: "P:Rétro", lieu: { fr: "Centre culturel coréen, Paris", en: "Korean Cultural Centre, Paris" },
       vues: [
-        { src: "images/expositions/p-retro-2019/1.jpg", w: 2400, h: 1596, legende: "" },
-        { src: "images/expositions/p-retro-2019/2.jpg", w: 2400, h: 1889, legende: "" },
-        { src: "images/expositions/p-retro-2019/3.jpg", w: 2400, h: 1600, legende: "" },
-        { src: "images/expositions/p-retro-2019/4.jpg", w: 1600, h: 2400, legende: "" },
+        { src: "images/expositions/p-retro-2019/1.jpg?v=e9d4655e", w: 2400, h: 1596, legende: "" },
+        { src: "images/expositions/p-retro-2019/2.jpg?v=9a674f6d", w: 2400, h: 1889, legende: "" },
+        { src: "images/expositions/p-retro-2019/3.jpg?v=4c1f502f", w: 2400, h: 1600, legende: "" },
+        { src: "images/expositions/p-retro-2019/4.jpg?v=c2e77077", w: 1600, h: 2400, legende: "" },
       ],
     },
     {
       id: "etampes-2018", type: "collective", annee: "2018", titre: "86e salon de la Société artistique d'Étampes", lieu: "Étampes",
       vues: [
-        { src: "images/expositions/etampes-2018/1.jpg", w: 2237, h: 2400, legende: "" },
+        { src: "images/expositions/etampes-2018/1.jpg?v=778bc32b", w: 2237, h: 2400, legende: "" },
       ],
     },
     {
       id: "journet-2018", type: "collective", annee: "2018", titre: "Rêver le monde", lieu: "Maviaux, Journet",
       vues: [
-        { src: "images/expositions/journet-2018/1.jpg", w: 1512, h: 2016, legende: "" },
-        { src: "images/expositions/journet-2018/2.jpg", w: 2016, h: 1512, legende: "" },
-        { src: "images/expositions/journet-2018/3.jpg", w: 2400, h: 1914, legende: "" },
-        { src: "images/expositions/journet-2018/4.jpg", w: 2400, h: 1500, legende: "" },
+        { src: "images/expositions/journet-2018/1.jpg?v=1ff6b24b", w: 1512, h: 2016, legende: "" },
+        { src: "images/expositions/journet-2018/2.jpg?v=198e27bd", w: 2016, h: 1512, legende: "" },
+        { src: "images/expositions/journet-2018/3.jpg?v=cff2b62a", w: 2400, h: 1914, legende: "" },
+        { src: "images/expositions/journet-2018/4.jpg?v=e971dbac", w: 2400, h: 1500, legende: "" },
       ],
     },
     { type: "collective", annee: "2016", titre: "From Here", lieu: "La Galcante, Paris" },
