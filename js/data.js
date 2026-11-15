@@ -240,6 +240,19 @@ const SITE = {
     },
 
     {
+      id: "fiap-2026", type: "collective", annee: "2026", titre: "Différences et Connexions", lieu: "FIAP, Paris",
+      dates: { fr: "13 mai – 28 juin 2026", en: "13 May – 28 June 2026" },
+      texte: {
+        fr: "Exposition collective de l'Association des Jeunes Artistes Coréens (AJAC), 16e édition des Regards croisés, organisée à l'occasion du 140e anniversaire des relations diplomatiques entre la France et la Corée. Commissaire : Junseok Mo.",
+        en: "Group exhibition of the Association of Young Korean Artists (AJAC), 16th edition of Regards croisés, held for the 140th anniversary of diplomatic relations between France and Korea. Curator: Junseok Mo.",
+      },
+      vues: [
+        { src: "images/expositions/fiap-2026/1.jpg", w: 2400, h: 1800, legende: "" },
+        { src: "images/expositions/fiap-2026/2.jpg", w: 2400, h: 1800, legende: "" },
+        { src: "images/expositions/fiap-2026/3.jpg", w: 1600, h: 2400, legende: "" },
+      ],
+    },
+    {
       id: "montparnasse-2024", type: "collective", annee: "2024", titre: "Ce qui est vivant tend à disparaître", lieu: "Galerie du Montparnasse, Paris",
       vues: [
         { src: "images/expositions/montparnasse-2024/1.jpg", w: 2400, h: 1600, legende: "" },
