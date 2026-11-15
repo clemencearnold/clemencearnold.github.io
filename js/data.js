@@ -273,7 +273,7 @@ const SITE = {
         { src: "images/expositions/montparnasse-2022/1.jpg", w: 2400, h: 1600, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Collectif Le Réseau" },
         { src: "images/expositions/montparnasse-2022/2.jpg", w: 2048, h: 1368, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Ludovic Marquier" },
         { src: "images/expositions/montparnasse-2022/3.jpg", w: 2048, h: 1368, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Ludovic Marquier" },
-        { src: "images/expositions/montparnasse-2022/4.jpg", w: 2048, h: 1152, legende: "<em>Ruines du souvenir</em>, 2020" },
+        { src: "images/expositions/montparnasse-2022/4.jpg", w: 2048, h: 1152, legende: "<em>Ruines du souvenir</em>, 2020", credit: "© Ludovic Marquier" },
       ],
     },
     { type: "collective", annee: "2021", titre: "Prix de l'Espace Beaurepaire", lieu: "Espace Beaurepaire, Paris" },
