@@ -36,7 +36,7 @@ const SITE = {
   portraits: {
     // credit : nom du ou de la photographe — À COMPLÉTER
     apropos: { src: "images/portraits/portrait-1-nb.jpg", w: 2226, h: 2400, credit: "" },
-    contact: { src: "images/portraits/portrait-visitation-6.jpg", w: 2400, h: 1689, credit: "" }, // PortraitVisitation6REC, en couleur
+    contact: { src: "images/portraits/portrait-visitation-6.jpg?v=2", w: 2400, h: 1689, credit: "" }, // PortraitVisitation6REC, en couleur, saturation -25 %
   },
 
   // Page Bio — ligne sous le nom, puis texte de démarche, au « je » (à retravailler par Clémence)
@@ -405,7 +405,7 @@ const SITE = {
     formation: [
       { an: "2017–2019", texte: { fr: "Master recherche Arts plastiques, École des arts de la Sorbonne, Paris", en: "Research Master's in Visual Arts, École des arts de la Sorbonne, Paris" } },
       { an: "2014–2017", texte: { fr: "Licence Arts plastiques, École des arts de la Sorbonne, Paris", en: "Bachelor's in Visual Arts, École des arts de la Sorbonne, Paris" } },
-      { an: "2013–2016", texte: { fr: "Ateliers des Beaux-Arts de la Ville de Paris (Glacière), atelier de peinture de Gonzalo Belmonte", en: "Ateliers des Beaux-Arts de la Ville de Paris (Glacière), painting studio of Gonzalo Belmonte" } },
+      { an: "2013–2016", texte: { fr: "Ateliers des Beaux-Arts de la Ville de Paris (Glacière), atelier de peinture", en: "Ateliers des Beaux-Arts de la Ville de Paris (Glacière), painting studio" } },
       { an: "2014–2015", texte: { fr: "Formation en réalisation et montage de court-métrage, Ville de Paris", en: "Short film directing and editing course, City of Paris" } },
     ],
     prix: [
