@@ -35,7 +35,7 @@ const SITE = {
 
   portraits: {
     // credit : nom du ou de la photographe — À COMPLÉTER
-    apropos: { src: "images/portraits/portrait-1-nb.jpg", w: 2226, h: 2400, credit: "" },
+    apropos: { src: "images/portraits/portrait-visitation-2.jpg", w: 2226, h: 2400, credit: "" }, // PortraitVisitation2, en couleur, recadrée comme l'ancienne photo N&B
     contact: { src: "images/portraits/portrait-visitation-6.jpg?v=2", w: 2400, h: 1689, credit: "" }, // PortraitVisitation6REC, en couleur, saturation -25 %
   },
 
